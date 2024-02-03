@@ -1,0 +1,140 @@
+{"fake" : [
+    {
+        "id": "fake.temperature",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 100,
+        "omega": 0.01,
+        "phi": 100,
+        "mid": "rockets.anirniq.acquisition.temperature",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.temperature_timmiaq",
+        "module": "fake",
+        "frequency": 50,
+        "alpha": 50,
+        "omega": 0.02,
+        "phi": 50,
+        "mid": "rockets.timmiaq.acquisition.temperature",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.pressure",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 1000,
+        "omega": 0.01,
+        "phi": 1000,
+        "mid": "rockets.anirniq.acquisition.pressure",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.pressure_timmiaq",
+        "module": "fake",
+        "frequency": 50,
+        "alpha": 500,
+        "omega": 0.02,
+        "phi": 500,
+        "mid": "rockets.timmiaq.acquisition.pressure",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.altitude",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 15000,
+        "omega": 0.002,
+        "phi": 15000,
+        "mid": "rockets.anirniq.acquisition.altitude",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.altitude_timmiaq",
+        "module": "fake",
+        "frequency": 50,
+        "alpha": 10000,
+        "omega": 0.003,
+        "phi": 10000,
+        "mid": "rockets.timmiaq.acquisition.altitude",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.velocity",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 1000,
+        "omega": 0.01,
+        "mid": "rockets.anirniq.acquisition.vertical_velocity",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.velocity_timmiaq",
+        "module": "fake",
+        "frequency": 50,
+        "alpha": 500,
+        "omega": 0.005,
+        "mid": "rockets.timmiaq.acquisition.vertical_velocity",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.acceleration",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 12.3,
+        "omega": 0.1,
+        "mid": "rockets.anirniq.acquisition.acceleration",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.acceleration_timmiaq",
+        "module": "fake",
+        "frequency": 50,
+        "alpha": 6.3,
+        "omega": 0.05,
+        "mid": "rockets.timmiaq.acquisition.acceleration",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.gps.lat",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 0.007,
+        "omega": 0.11,
+        "phi": 45.54300,
+        "mid": "rockets.anirniq.acquisition.gps.lat",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.gps.lon",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 0.01,
+        "omega": 0.47,
+        "phi": -73.55000,
+        "mid": "rockets.anirniq.acquisition.gps.lon",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.gps.lat_timmiaq",
+        "module": "fake",
+        "frequency": 120,
+        "alpha": 0.009,
+        "omega": 0.17,
+        "phi": 42.54300,
+        "mid": "rockets.timmiaq.acquisition.gps.lat",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.gps.lon_timmiaq",
+        "module": "fake",
+        "frequency": 100,
+        "alpha": 0.03,
+        "omega": 0.26,
+        "phi": -69.55000,
+        "mid": "rockets.timmiaq.acquisition.gps.lon",
+        "broadcast": ["cute"]
+    }
+],
+"freq" : 50
+}

@@ -1,5 +1,6 @@
 from Model import CuteModel
 from Modules.ModuleFactory import ModuleFactory
+from threading import Thread
 
 class App:
     def __init__(self):
@@ -10,8 +11,13 @@ class App:
         print("Initialising Modules")
         factory = ModuleFactory()
 
-        fake = factory.create("Fake")
-        serial = factory.create("Serial")
+        fake = factory.create("fake")
+        if fake.readJson():
+            fakeThread = Thread(target=fake.run)
+            fakeThread.start()
+
+        serial = factory.create("serial")
+
         
 
 

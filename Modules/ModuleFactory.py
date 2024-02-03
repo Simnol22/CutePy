@@ -5,11 +5,11 @@ import Modules.FakeModule as FakeModule
 class ModuleFactory:
     @staticmethod
     def create(module_name):
-        if module_name == "Serial":
+        if module_name == "serial":
             return SerialModule.SerialModule()
-        elif module_name == "Influx":
+        elif module_name == "influx":
             return InfluxModule.InfluxModule()
-        elif module_name == "Fake":
+        elif module_name == "fake":
             return FakeModule.FakeModule()
         else:
             print("Module not found")
