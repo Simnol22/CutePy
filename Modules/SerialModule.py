@@ -1,5 +1,5 @@
 from Modules.Module import DataModule
-import serial #From PySerial
+#import serial from PySerial
 
 class SerialModule(DataModule):
     def __init__(self):
