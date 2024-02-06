@@ -11,12 +11,12 @@ class App: # Controlleur
         self.modules = []
         signal.signal(signal.SIGINT, signal.SIG_DFL)
         protocol = ProtocolHelper('protocol.xml')
-        print(protocol.to_cute_name('0','2','0'))
+        print(protocol.to_cute_name('0','2','4'))
     def run(self):
         print('App is running')
         
         self.createModules()
-        #self.createView()
+        self.createView()
         
 
     def createModules(self):

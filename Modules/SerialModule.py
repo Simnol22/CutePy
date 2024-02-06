@@ -4,5 +4,5 @@ from Modules.Module import DataModule
 class SerialModule(DataModule):
     def __init__(self):
         print("Serial")
-        com_port = "COM4"
-        baud_rate = 9600
+        self.com_port = "COM4"
+        self.baud_rate = 9600

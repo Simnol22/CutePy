@@ -15,10 +15,14 @@ class ProtocolHelper():
         except:
             print("Error reading protocol")
             exit(1)
-
+    
+    def to_cute_name(self, nodeGroupId, nodeId, messageId):
+        cuteName = self.parse_to_cute_name(nodeGroupId, nodeId, messageId)
+        return '.'.join(cuteName)
+    
     # ex : 0 , 2 , 4 -> rockets.anirniq.communication.gnss.lat
     # TODO : from_cute_name : rockets.anirniq.communication.gnss.lat -> 0 , 2 , 4"
-    def to_cute_name(self, nodeGroupId, nodeId, messageId):
+    def parse_to_cute_name(self, nodeGroupId, nodeId, messageId):
         toCuteName = []
         toCuteName.append(self.root.attrib['name'])
         for node_group in self.root:

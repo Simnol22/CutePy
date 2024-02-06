@@ -35,5 +35,6 @@ class CuteView:
     
     def updateMeasurement(self, measurement):
         for widget in self.widgets:
-            if measurement.source == 'rockets.anirniq.acquisition.altitude':
-                widget.setData(measurement)
+            for i in widget.requiredData:
+                if i == measurement.source:
+                    widget.setData(measurement)
