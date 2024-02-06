@@ -2,7 +2,7 @@ from View import CuteView
 from Modules.FakeModule import FakeModule
 
 from threading import Thread
-
+from protocol import ProtocolHelper
 import signal # For catching Ctrl+C which is not working while multithreading in windows python
 
 class App: # Controlleur
@@ -10,13 +10,13 @@ class App: # Controlleur
         self.view = None
         self.modules = []
         signal.signal(signal.SIGINT, signal.SIG_DFL)
-        pass # Add any initialization code here
-        
+        protocol = ProtocolHelper('protocol.xml')
+        print(protocol.to_cute_name('0','2','0'))
     def run(self):
         print('App is running')
         
         self.createModules()
-        self.createView()
+        #self.createView()
         
 
     def createModules(self):

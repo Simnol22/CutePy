@@ -67,12 +67,10 @@
             <message id="5" name="lon" type="float" />
         </message_group>
 
-        <message_group name="engine">
-            <message_group name="sequence">
-                <message id="6" name="set" type="int" command="yes" />
-                <message id="7" name="start" type="int" command="yes" />
-                <message id="8" name="stop" type="int" command="yes" />
-            </message_group>
+        <message_group name="engine_sequence">
+            <message id="6" name="set" type="int" command="yes" />
+            <message id="7" name="start" type="int" command="yes" />
+            <message id="8" name="stop" type="int" command="yes" />
         </message_group>
     </node>
 
@@ -201,12 +199,10 @@
             <message id="5" name="lon" type="float" />
         </message_group>
 
-        <message_group name="engine">
-            <message_group name="sequence">
-                <message id="6" name="set" type="int" command="yes" />
-                <message id="7" name="start" type="int" command="yes" />
-                <message id="8" name="stop" type="int" command="yes" />
-            </message_group>
+        <message_group name="engine_sequence">
+            <message id="6" name="set" type="int" command="yes" />
+            <message id="7" name="start" type="int" command="yes" />
+            <message id="8" name="stop" type="int" command="yes" />
         </message_group>
     </node>
 
