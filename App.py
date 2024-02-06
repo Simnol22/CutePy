@@ -14,8 +14,9 @@ class App: # Controlleur
         
     def run(self):
         print('App is running')
-        self.createView()
+        
         self.createModules()
+        self.createView()
         
 
     def createModules(self):
@@ -36,7 +37,8 @@ class App: # Controlleur
 
     def sendMeasurement(self, measurement):
         #Sending measurement to the view
-        self.view.updateMeasurement(measurement)
+        if self.view:
+            self.view.updateMeasurement(measurement)
 
 
 if __name__ == '__main__':
