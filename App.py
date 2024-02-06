@@ -34,6 +34,8 @@ class App: # Controlleur
         print("Starting view threads")
         viewThread = Thread(target=view.run)
         viewThread.start()
+        self.view.startApp()
+        print("Done !")
 
     def sendMeasurement(self, measurement):
         #Sending measurement to the view

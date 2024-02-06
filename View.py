@@ -8,14 +8,15 @@ class CuteView:
     def __init__(self,frequence = 1):
         self.widgets = []
         self.freq = frequence
-        #self.widgets.append(PrintWidget("PrintWidget"))
-
-    def run(self):
         self.app = QApplication(sys.argv)
-        #window = QMainWindow()
+        self.createWidgets()
+
+    def createWidgets(self): # Will be done more fancy 
         window = DataWidget()
         self.widgets.append(window)
         window.show()
+
+    def run(self):
         try:
             while True:
                 print("CuteView running")
@@ -23,9 +24,11 @@ class CuteView:
                 time.sleep(1/self.freq)
         except KeyboardInterrupt:
             print('interrupted!')
-        
+
+    def startApp(self):
+        self.app.exec() #Start the Qt event loop on the main thread. No other instructions will be executed until the application is closed
+
     def onTimeOut(self): #Loop for all widgets. You could make a different queue for each widget and run them in parallel
-        self.app.processEvents()
         for widget in self.widgets:
             widget.refresh()
             widget.update()
