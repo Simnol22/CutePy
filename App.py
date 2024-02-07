@@ -1,5 +1,6 @@
 from View import CuteView
 from Modules.FakeModule import FakeModule
+from Modules.SerialModule import SerialModule
 
 from threading import Thread
 from protocol import ProtocolHelper
@@ -10,8 +11,8 @@ class App: # Controlleur
         self.view = None
         self.modules = []
         signal.signal(signal.SIGINT, signal.SIG_DFL)
-        protocol = ProtocolHelper('protocol.xml')
-        print(protocol.to_cute_name('0','2','4'))
+        self.protocol = ProtocolHelper('protocol.xml')
+        print(self.protocol.to_cute_name(0,2,4))
     def run(self):
         print('App is running')
         
@@ -21,11 +22,16 @@ class App: # Controlleur
 
     def createModules(self):
         print("Initialising Modules")
-        fake = FakeModule(self, frequence=10)
-        if fake.readJson():
+        #fake = FakeModule(self, frequence=10)
+        #if fake.readJson():
+        #    print("Starting module threads")
+        #    fakeThread = Thread(target=fake.run)
+        #    fakeThread.start()
+        serialModule = SerialModule(self, frequence=10)
+        if serialModule.serialConnection():
             print("Starting module threads")
-            fakeThread = Thread(target=fake.run)
-            fakeThread.start()
+            serialThread = Thread(target=serialModule.run)
+            serialThread.start()
 
     def createView(self):
         print("Initialising View")
@@ -38,6 +44,7 @@ class App: # Controlleur
         print("Done !")
 
     def sendMeasurement(self, measurement):
+        print("Sending measurement to view")
         #Sending measurement to the view
         if self.view:
             self.view.updateMeasurement(measurement)

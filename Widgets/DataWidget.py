@@ -5,10 +5,10 @@ class DataWidget(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Data Widget")
-        self.label = QLabel("Data Widget")
+        self.label = QLabel("No data")
         self.setCentralWidget(self.label)
         self.data = None
-        self.requiredData = ["rockets.anirniq.acquisition.gps.lat","rockets.anirniq.acquisition.gps.lon"]
+        self.requiredData = ["rockets.anirniq.acquisition.gps.lat","rockets.anirniq.acquisition.gps.lon","rockets.anirniq.mission.charge_status.main"]
         self.latVal = None
         self.lonVal = None
     
@@ -16,11 +16,12 @@ class DataWidget(QMainWindow):
     # We need to separate them with the value of the source.
     def setData(self, data):
         self.data = data
-        if data.source == "rockets.anirniq.acquisition.gps.lat":
+        if data.source == "rockets.anirniq.mission.charge_status.main":
             self.latVal = data.value
+            print("just set beuatiful data : ", self.latVal)
         if data.source == "rockets.anirniq.acquisition.gps.lon":
             self.lonVal = data.value
 
     def refresh(self):
-        if self.latVal and self.lonVal:
-            self.label.setText( "Lat : " + str(self.latVal) + "Lon : " + str(self.lonVal))
+        #if self.latVal:
+        self.label.setText( "charge : " + str(self.latVal))# + "Lon : " + str(self.lonVal))

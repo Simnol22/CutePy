@@ -21,8 +21,12 @@ class ProtocolHelper():
         return '.'.join(cuteName)
     
     # ex : 0 , 2 , 4 -> rockets.anirniq.communication.gnss.lat
+    # TODO : gestion d'erreur. Si on donne mettons 0,2,40 ou patate,1,-5 ca devrait retourner une erreur
     # TODO : from_cute_name : rockets.anirniq.communication.gnss.lat -> 0 , 2 , 4"
     def parse_to_cute_name(self, nodeGroupId, nodeId, messageId):
+        nodeGroupId = str(nodeGroupId) # In case it's an int
+        nodeId = str(nodeId)
+        messageId = str(messageId)
         toCuteName = []
         toCuteName.append(self.root.attrib['name'])
         for node_group in self.root:

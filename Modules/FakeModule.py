@@ -27,13 +27,13 @@ class FakeModule(DataModule):
         try:
             while True:
                 print("FakeModule running")
-                self.onTimeOut()
+                self.onData()
                 time.sleep(1/self.freq)
         except KeyboardInterrupt:
             print('interrupted!')
         print("FakeModule running")
 
-    def onTimeOut(self):
+    def onData(self):
         for i in self.baseData:
             measurement = Measurement()
             measurement.setSource(i["mid"])

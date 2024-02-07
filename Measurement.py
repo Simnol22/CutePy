@@ -18,6 +18,9 @@ class Measurement:
 
     def setValue(self, value):
         self.value = value
+
+    def hasValue(self):
+        return self.value is not None
     
     def __str__(self):
         return "Measurement: " + str(self.source) + " -> " + str(self.value) + " @ " + str(self.timestamp)

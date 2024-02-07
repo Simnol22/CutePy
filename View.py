@@ -11,7 +11,7 @@ class CuteView:
         self.app = QApplication(sys.argv)
         self.createWidgets()
 
-    def createWidgets(self): # Will be done more fancy 
+    def createWidgets(self): # Will be done more fancy test
         window = DataWidget()
         self.widgets.append(window)
         window.show()
@@ -32,9 +32,13 @@ class CuteView:
         for widget in self.widgets:
             widget.refresh()
             widget.update()
-    
+
+    # Chaque widget a son requiredData. On peut mettre la ou les sources qu'on souhaite recevoir
+    # et la fonction va les envoyer au widget
     def updateMeasurement(self, measurement):
+        print("here bitch")
         for widget in self.widgets:
             for i in widget.requiredData:
                 if i == measurement.source:
+                    print("sending good shit", measurement)
                     widget.setData(measurement)
