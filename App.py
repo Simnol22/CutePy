@@ -44,7 +44,6 @@ class App: # Controlleur
         print("Done !")
 
     def sendMeasurement(self, measurement):
-        print("Sending measurement to view")
         #Sending measurement to the view
         if self.view:
             self.view.updateMeasurement(measurement)

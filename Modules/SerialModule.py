@@ -6,6 +6,8 @@ import serial
 import time
 import struct
 
+#serial.tools.list_ports.comports() pour list les ports
+
 class SerialModule(DataModule):
     def __init__(self, parent, frequence = 5, protocol = None):
         print("Serial")
@@ -45,7 +47,7 @@ class SerialModule(DataModule):
         measurement_source =self.protocol.to_cute_name(packet.node_group_id, packet.node, packet.message_id)
         measurement.setSource(measurement_source)
         #Need to turn packet.payload, a byte array, into a float
-        double_value = struct.unpack('<d', packet.payload)[0]
+        double_value = struct.unpack('<f', packet.payload[:4])
         measurement.setValue(double_value)
         
         measurement.setTimestamp(time.time())
@@ -62,7 +64,7 @@ class SerialModule(DataModule):
         print("SerialModule running") 
 
     def onData(self):
-        bufferRead = self.serial.read()
+        bufferRead = self.serial.read(100)
         for i in bufferRead:
             self.buffer.append(i)
             if len(self.buffer)>= 12:
@@ -79,21 +81,18 @@ class SerialModule(DataModule):
                 packet.payload[6] = self.buffer[9]
                 packet.payload[7] = self.buffer[10]
                 packet.checksum = self.buffer[11]
-                print(self.buffer[:12])
-                print("Got " + str(packet.checksum) + " Expected " + str(packet.radio_compute_crc()))
+                print("data : ", self.buffer[:12])
                 if packet.radio_compute_crc() == packet.checksum:
                     measurement = self.buildMeasurement(packet)
                     if measurement.hasValue():
                         self.parent.sendMeasurement(measurement)
-                        print("Measurement sent")
-                        print(measurement)
-                        
+                        print("sending ", measurement)
                     else:
                         print("Failed to build Measurement")
-                    self.buffer = self.buffer[12:]
+                    self.buffer = self.buffer[12:] #remove 12 first elements
                 else:
                     print("Invalid CRC : Got " + str(packet.checksum) + " Expected " + str(packet.radio_compute_crc()))
-                    self.buffer = []
+                    self.buffer = self.buffer[1:] #remove first element
 
 
     def onMessage(self, msg):

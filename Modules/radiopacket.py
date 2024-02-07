@@ -30,7 +30,6 @@ class RadioPacket():
 
     def radio_compute_crc(self):
         crc = 0
-        print("data : ", self.data)
         for i in range(0, self.size-1):
             crc = self.CRC_8_TABLE[crc ^ self.data[i]]
         return crc
