@@ -12,9 +12,10 @@ class CuteView:
         self.createWidgets()
 
     def createWidgets(self): # Will be done more fancy test
-        window = DataWidget()
-        self.widgets.append(window)
-        window.show()
+        #window = QMainWindow(500,500)
+        data = DataWidget(None)
+        self.widgets.append(data)
+        data.show()
 
     # CuteView Thread loop. This is just for refreshing the widgets information
     def run(self):
@@ -43,3 +44,4 @@ class CuteView:
             for i in widget.requiredData:
                 if i == measurement.source:
                     widget.setData(measurement)
+
