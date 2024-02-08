@@ -24,3 +24,10 @@ The view is the Qt GUI. It's running on the main thread, and recieves the necess
 ## Dependencies
 - Pyserial (For serial communication - essential to recieve data from the rocket)
 - PySide6 (Qt framework for python)
+
+## TODO list
+- Creating efficient, simple and modular organization for widget configuration 
+- Translate all used widgets to PySide
+- Connection to a database (InfluxDB for now) and sending recieved serial data
+- Adapting serialModule (and protocolHelper) to send data to rocket
+- Create Installer and .py to .exe system
