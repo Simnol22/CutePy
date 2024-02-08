@@ -20,21 +20,21 @@ class App: # Controlleur
     # All the modules are created here. Might create a model class for the modules for clearer and more maintainable code
     def createModules(self):
         print("Initialising Modules")
-        fake = FakeModule(self, frequence=20)
+        fake = FakeModule(self, frequence=200)
         if fake.readJson(): # If the fakeconfig.json file is read correctly
             print("Starting module threads")
             fakeThread = Thread(target=fake.run)
             fakeThread.start()
         
-        serialModule = SerialModule(self, frequence=1) # No frequency for the serial module, this frequency is only for retrying connection with serial port
-        print("Starting module threads")
-        serialThread = Thread(target=serialModule.run)
-        serialThread.start()
+        #serialModule = SerialModule(self, frequence=1) # No frequency for the serial module, this frequency is only for retrying connection with serial port
+        #print("Starting module threads")
+        #serialThread = Thread(target=serialModule.run)
+        #serialThread.start()
     
     # The view is created here. It is a Qt application that will be running as the main thread
     def createView(self):
         print("Initialising View")
-        view = CuteView(frequence=5)
+        view = CuteView(frequence=20)
         self.view = view
         print("Starting view threads")
         viewThread = Thread(target=view.run)

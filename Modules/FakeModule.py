@@ -43,3 +43,4 @@ class FakeModule(DataModule):
             measurement.setValue(i["alpha"] * math.sin(i["n"]) + i["phi"])
             i["n"] += i["omega"] * ((math.pi * 2) / self.freq)
             self.parent.sendMeasurement(measurement)
+            #print(measurement)
