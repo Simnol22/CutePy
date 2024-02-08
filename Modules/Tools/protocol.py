@@ -20,6 +20,7 @@ class ProtocolHelper():
         cuteName = self.parse_to_cute_name(nodeGroupId, nodeId, messageId)
         return '.'.join(cuteName)
     
+    # Parser du protocol.xml vers les nums standards utilisés dans l'application
     # ex : 0 , 2 , 4 -> rockets.anirniq.communication.gnss.lat
     # TODO : gestion d'erreur. Si on donne mettons 0,2,40 ou patate,1,-5 ca devrait retourner une erreur
     # TODO : from_cute_name : rockets.anirniq.communication.gnss.lat -> 0 , 2 , 4"

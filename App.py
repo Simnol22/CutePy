@@ -3,48 +3,48 @@ from Modules.FakeModule import FakeModule
 from Modules.SerialModule import SerialModule
 
 from threading import Thread
-from protocol import ProtocolHelper
-import signal # For catching Ctrl+C which is not working while multithreading in windows python
+
+import signal 
 
 class App: # Controlleur
     def __init__(self):
         self.view = None
         self.modules = []
-        signal.signal(signal.SIGINT, signal.SIG_DFL)
-        self.protocol = ProtocolHelper('protocol.xml')
-        print(self.protocol.to_cute_name(0,2,4))
+        signal.signal(signal.SIGINT, signal.SIG_DFL) # For catching Ctrl+C which is not working while multithreading in windows python
+
     def run(self):
         print('App is running')
-        
         self.createModules()
         self.createView()
         
-
+    # All the modules are created here. Might create a model class for the modules for clearer and more maintainable code
     def createModules(self):
         print("Initialising Modules")
-        #fake = FakeModule(self, frequence=10)
-        #if fake.readJson():
-        #    print("Starting module threads")
-        #    fakeThread = Thread(target=fake.run)
-        #    fakeThread.start()
-        serialModule = SerialModule(self, frequence=10)
-        if serialModule.serialConnection():
+        fake = FakeModule(self, frequence=20)
+        if fake.readJson(): # If the fakeconfig.json file is read correctly
             print("Starting module threads")
-            serialThread = Thread(target=serialModule.run)
-            serialThread.start()
-
+            fakeThread = Thread(target=fake.run)
+            fakeThread.start()
+        
+        serialModule = SerialModule(self, frequence=1) # No frequency for the serial module, this frequency is only for retrying connection with serial port
+        print("Starting module threads")
+        serialThread = Thread(target=serialModule.run)
+        serialThread.start()
+    
+    # The view is created here. It is a Qt application that will be running as the main thread
     def createView(self):
         print("Initialising View")
-        view = CuteView(frequence=10)
+        view = CuteView(frequence=5)
         self.view = view
         print("Starting view threads")
         viewThread = Thread(target=view.run)
         viewThread.start()
+        # This will start the Qt event loop on the main thread. No other instructions will be executed until the application is closed
         self.view.startApp()
-        print("Done !")
+        print("Done !") 
 
     def sendMeasurement(self, measurement):
-        #Sending measurement to the view
+        #Sending measurement to the view.
         if self.view:
             self.view.updateMeasurement(measurement)
 

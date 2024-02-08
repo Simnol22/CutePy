@@ -1,5 +1,5 @@
 from Modules.Module import DataModule
-from Measurement import Measurement
+from Modules.Tools.Measurement import Measurement
 import math
 import time
 import json
@@ -12,6 +12,7 @@ class FakeModule(DataModule):
         self.parent = parent
         print("FakeModule Created")
     
+    # Read the fakeconfig.json file, get the data as a variable
     def readJson(self):
         try:
             with open('Modules/fakeconfig.json') as f:
@@ -23,6 +24,7 @@ class FakeModule(DataModule):
             print("Error reading fakeconfig.json")
             return False
 
+    # FakeModule Thread loop.
     def run(self):
         try:
             while True:
@@ -32,7 +34,8 @@ class FakeModule(DataModule):
         except KeyboardInterrupt:
             print('interrupted!')
         print("FakeModule running")
-
+    
+    # with the variable data, we can calculate the value of the measurement and send it to the parent
     def onData(self):
         for i in self.baseData:
             measurement = Measurement()
@@ -40,6 +43,3 @@ class FakeModule(DataModule):
             measurement.setValue(i["alpha"] * math.sin(i["n"]) + i["phi"])
             i["n"] += i["omega"] * ((math.pi * 2) / self.freq)
             self.parent.sendMeasurement(measurement)
-
-    def onMessage(self, msg):
-        pass

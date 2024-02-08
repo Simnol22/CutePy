@@ -1,4 +1,4 @@
-
+# Classe faite pour être similaire au radiopacket de anirniq_shared, afin de décrypter les packets reçus par le RFD900
 class RadioPacket():
     def __init__(self, data = None):
         self.data = data
@@ -8,7 +8,8 @@ class RadioPacket():
         self.payload = bytearray(8)
         self.checksum = None
         
-        self.size = 12 # This is the size of the packet. It's a constant for now, but it could be dynamic in the future
+        self.size = 12 # This is the size of the packet. 1 Byte for each ID, 8 bytes for the payload and 1 byte for the checksum.
+        
         self.CRC_8_TABLE =[
 	      0, 94,188,226, 97, 63,221,131,194,156,126, 32,163,253, 31, 65,
 	    157,195, 33,127,252,162, 64, 30, 95,  1,227,189, 62, 96,130,220,
