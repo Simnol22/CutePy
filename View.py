@@ -31,7 +31,6 @@ class CuteView:
         try:
             while True:
                 #print("CuteView running")
-                self.app.processEvents()
                 self.onTimeOut()
                 
                 time.sleep(1/self.freq)
@@ -40,8 +39,7 @@ class CuteView:
     
     # Start the Qt event loop on the main thread. No other instructions will be executed until the application is closed
     def startApp(self):
-       # self.app.exec() 
-        ...
+        self.app.exec() 
 
     # Loop for all widgets. You could make a different queue for each widget and run them in parallel
     def onTimeOut(self): 

@@ -25,7 +25,7 @@ class App: # Controlleur
             print("Starting module threads")
             fakeThread = Thread(target=fake.run)
             fakeThread.start()
-        
+        #
         #serialModule = SerialModule(self, frequence=1) # No frequency for the serial module, this frequency is only for retrying connection with serial port
         #print("Starting module threads")
         #serialThread = Thread(target=serialModule.run)
