@@ -17,7 +17,6 @@ class FakeModule(DataModule):
         try:
             with open('Modules/fakeconfig.json') as f:
                 data = json.load(f)
-                self.freq = data["freq"]
                 self.baseData = data["fake"]
             return True
         except:

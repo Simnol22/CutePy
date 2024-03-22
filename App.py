@@ -20,7 +20,7 @@ class App: # Controlleur
     # All the modules are created here. Might create a model class for the modules for clearer and more maintainable code
     def createModules(self):
         print("Initialising Modules")
-        fake = FakeModule(self, frequence=200)
+        fake = FakeModule(self, frequence=15)
         if fake.readJson(): # If the fakeconfig.json file is read correctly
             print("Starting module threads")
             fakeThread = Thread(target=fake.run)
