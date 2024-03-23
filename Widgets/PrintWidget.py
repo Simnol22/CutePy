@@ -8,6 +8,7 @@ class PrintWidget(Widget):
 
     def setData(self,data):
         self.data = data
+        self.refresh()
 
     def refresh(self):
         if self.data:

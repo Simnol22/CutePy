@@ -45,8 +45,6 @@ class TerminalWidget(Widget):
                         found = True
                         i.value = str(round(data.value,self.round))
                 if not found:
-                    self.allData.append(data)    
-        self.refresh()
-
-    def refresh(self):
-        self.updateTerminalLabel()
+                    self.allData.append(data)
+                # Update the data label when recieving new data
+                self.updateTerminalLabel()

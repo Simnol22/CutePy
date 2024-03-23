@@ -51,8 +51,9 @@ class CuteView:
 
     # Loop for all widgets. Since we have data transfer by reference, 
     # we don't need to manualy update the widgets for now. Might come in handy for some widgets
-    def onTimeOut(self): 
-        pass
+    def onTimeOut(self):
+        for widget in self.widgets:
+            widget.onUpdate()
 
     # Chaque widget a son requiredData. On peut mettre la ou les sources qu'on souhaite recevoir
     # et la fonction va les envoyer au widget

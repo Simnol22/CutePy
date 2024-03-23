@@ -39,8 +39,5 @@ class DataWidget(Widget):
         for i in self.requiredData:
             if data.source == i:
                 self.dataValue = str(round(data.value,self.round))
-        self.refresh()
-            
-    
-    def refresh(self):
-        self.updateDataLabel()
+                # Update the data label when recieving new data
+                self.updateDataLabel()
