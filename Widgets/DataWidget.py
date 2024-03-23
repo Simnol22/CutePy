@@ -1,36 +1,46 @@
 from Widgets.Widget import Widget
-from PySide6.QtWidgets import QLabel, QWidget, QMainWindow
-from PySide6 import QtCore
+from PySide6.QtWidgets import QLabel
 
 class DataWidget(Widget):
     def __init__(self, parent):
         super(DataWidget, self).__init__(parent)
-        #self.setWindowTitle("Data Widget")
-        self.label = QLabel("No data")
-        self.layout.addWidget(self.label)
+        self.dataLabel = QLabel("Not initialised")
+        self.layout.addWidget(self.dataLabel)
         self.setStyleSheet("border: 1px solid black;")
-        #self.setCentralWidget(self.label)
-        self.data = None
-        self.requiredData = ["rockets.anirniq.acquisition.gps.lat","rockets.anirniq.acquisition.gps.lon","rockets.anirniq.mission.charge_status.main","rockets.anirniq.mission.charge_status.drogue","rockets.anirniq.mission.charge_status.payload"]
-        self.latVal = None
-        self.lonVal = None
-        self.latest = None
-        self.resize(300,200)
+        self.dataValue = "No value"
+        self.label = "No label"
+        self.unit = ""
+        self.round = 2
+        self.requiredData = []
+        self.updateDataLabel()
 
-    def mode(self,x,y):
+    def setLabel(self, text):
+        self.label = text
+
+    def setSource(self, source):
+        self.requiredData = [source]
+
+    def setUnit(self, unit):
+        self.unit = unit
+
+    def setRounding(self, round):
+        self.round = round
+
+    def move(self,x,y):
         self.move(x,y)
+
+    def updateDataLabel(self):
+        self.dataLabel.setText(self.label + "\n" + self.dataValue + " "+ self.unit)
+
     # Here we are receiving measurements wanted in requiredData. 
     # We need to separate them with the value of the source.
     def setData(self, data):
         self.data = data
-        if data.source == "rockets.anirniq.mission.charge_status.main":
-            self.latVal = data.value
-        if data.source == "rockets.anirniq.mission.charge_status.drogue":
-            self.lonVal = data.value
-        if data.source == "rockets.anirniq.mission.charge_status.payload":
-            self.latest = data.value
+        for i in self.requiredData:
+            if data.source == i:
+                self.dataValue = str(round(data.value,self.round))
+        self.refresh()
             
     
     def refresh(self):
-        #if self.latVal:
-        self.label.setText( "charge main : " + str(self.latVal) + "\n" + "charge drogue " + str(self.lonVal) + "\n" + "charge drogue " + str(self.latest))
+        self.updateDataLabel()

@@ -1,36 +1,44 @@
-from Widgets.PrintWidget import PrintWidget
-from Widgets.DataWidget import DataWidget
-from Widgets.TerminalWidget import TerminalWidget
+#PySide imports
+from PySide6.QtWidgets import QApplication
+
+#Widgets
+from Widgets.Window import Window
+from Widgets.WidgetFactory import WidgetFactory
+
+#Python imports
 import time
-from PySide6.QtWidgets import QApplication, QWidget, QMainWindow
 import sys
+import json
+
 
 class CuteView:
     def __init__(self,frequence = 1):
         self.widgets = []
         self.freq = frequence
+        self.jsonConfig = json.load(open("config.json"))
+        #Opening the config file
+        if not self.jsonConfig:
+            print("Error: Could not open config file")
+            sys.exit(1)
+        print("Opened config file")
+
         self.app = QApplication(sys.argv)
         self.createWidgets()
 
-    def createWidgets(self): # Will be done more fancy test
-        window = QMainWindow()
-        window.setWindowTitle("CuteView")
-        window.setStyleSheet("border: 1px solid red;")
-        window.resize(600,400)
-        data = DataWidget(window)
-        data2 = TerminalWidget(window)
-        data2.move(300,0)
-        data2.resize(400,300)
+    def createWidgets(self):
+        self.widgetFactory = WidgetFactory(self)
+        self.window = Window()
+        self.widgetFactory.buildAll(self.jsonConfig,self.window.grid,self.window)
+        self.window.show()
 
-        self.widgets.append(data)
-        self.widgets.append(data2)
-        window.show()
+    #Register a widget to the data flow
+    def registerWidget(self,widget):
+        self.widgets.append(widget)
 
     # CuteView Thread loop. This is just for refreshing the widgets information
     def run(self):
         try:
             while True:
-                #print("CuteView running")
                 self.onTimeOut()
                 
                 time.sleep(1/self.freq)
@@ -41,11 +49,9 @@ class CuteView:
     def startApp(self):
         self.app.exec() 
 
-    # Loop for all widgets. You could make a different queue for each widget and run them in parallel
+    # Loop for all widgets. Since we have data transfer by reference, 
+    # we don't need to manualy update the widgets for now. Might come in handy for some widgets
     def onTimeOut(self): 
-        #for widget in self.widgets:
-        #    widget.refresh()
-        #    widget.update()
         pass
 
     # Chaque widget a son requiredData. On peut mettre la ou les sources qu'on souhaite recevoir

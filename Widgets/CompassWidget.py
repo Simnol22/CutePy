@@ -1,4 +1,5 @@
-from PySide6.QtWidgets import QLabel, QMainWindow, QPainter
+from PySide6.QtWidgets import QLabel, QMainWindow
+from PySide6.QtGui import QPainter
 
 class CompassWidget(QMainWindow):
     def __init__(self):

@@ -7,10 +7,5 @@ class Widget(QWidget):
         self.parent = parent
         self.name = None
         self.layout = QVBoxLayout()
-        #self.layout.setSpacing(0)
-        
         self.layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.layout)
-
-    def sizeHint(self):
-        return QtCore.QSize(800, 600)

@@ -27,7 +27,6 @@ class FakeModule(DataModule):
     def run(self):
         try:
             while True:
-                print("FakeModule running")
                 self.onData()
                 time.sleep(1/self.freq)
         except KeyboardInterrupt:
@@ -42,4 +41,3 @@ class FakeModule(DataModule):
             measurement.setValue(i["alpha"] * math.sin(i["n"]) + i["phi"])
             i["n"] += i["omega"] * ((math.pi * 2) / self.freq)
             self.parent.sendMeasurement(measurement)
-            #print(measurement)

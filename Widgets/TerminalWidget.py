@@ -1,44 +1,52 @@
 from Widgets.Widget import Widget
-from PySide6.QtWidgets import QLabel, QWidget, QMainWindow
-from PySide6 import QtCore
+from PySide6.QtWidgets import QLabel
 
 class TerminalWidget(Widget):
     def __init__(self, parent):
         super(TerminalWidget, self).__init__(parent)
-        #self.setWindowTitle("Data Widget")
-        self.label = QLabel("No data")
-        self.layout.addWidget(self.label)
+        self.Terminallabel = QLabel("No terminal data")
+        self.label = "No Label"
+        self.layout.addWidget(self.Terminallabel)
         self.setStyleSheet("border: 1px solid black;")
-        #self.setCentralWidget(self.label)
-        self.requiredData = ["all"]
-        self.latVal = None
-        self.lonVal = None
-        self.latest = None
-        self.resize(300,200)
+        self.requiredData = []
         self.allData = []
-        
-    def mode(self,x,y):
+        self.round = 2
+
+    def setLabel(self, text):
+        self.label = text
+
+    def setSource(self, source):
+        #If we have only one source (a string), we need to put it in a list
+        if isinstance(source, str):
+            self.requiredData = [source]
+        else:
+            self.requiredData = source
+
+    def setRounding(self, round):
+        self.round = round
+
+    def move(self,x,y):
         self.move(x,y)
+    
+    def updateTerminalLabel(self):
+        textLabel = self.label + "\n"
+        for i in self.allData:
+            textLabel += i.source + " : " + str(i.value) + "\n"
+        self.Terminallabel.setText(textLabel)
+    
     # Here we are receiving measurements wanted in requiredData. 
     # We need to separate them with the value of the source.
     def setData(self, data):
-        found = False
-        for i in self.allData:
-            if i.source == data.source:
-                found = True
-                i.value = data.value
-        if not found:
-            self.allData.append(data)    
-        text = " Fake data \n\n"
-        for i in self.allData:
-            text += i.source + " : " + str(i.value) + "\n"
-        self.label.setText(text)
+        for sources in self.requiredData:
+            if data.source == sources or sources == "all":
+                found = False
+                for i in self.allData:
+                    if i.source == data.source:                         
+                        found = True
+                        i.value = str(round(data.value,self.round))
+                if not found:
+                    self.allData.append(data)    
+        self.refresh()
 
     def refresh(self):
-        print("refreshing terminal widget")
-        #if self.latVal:
-        #text = " Fake data \n\n"
-        #for i in self.allData:
-        #    text += i.source + " : " + str(i.value) + "\n"
-        #self.label.setText(text)
-        #self.parent.update()
+        self.updateTerminalLabel()

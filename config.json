@@ -1,0 +1,63 @@
+{
+    "name": "Anirniq",
+    "widgets": [
+        {
+            "type": "DataWidget",
+            "name": "altitude",
+            "label": "Altitude",
+            "unit": "m",
+            "round": 0,
+            "source": "rockets.anirniq.acquisition.altitude",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "type": "DataWidget",
+            "name": "vitesse",
+            "label": "Vitesse",
+            "unit": "ft/s",
+            "round": 2,
+            "source": "rockets.anirniq.acquisition.vertical_velocity",
+            "x": 1,
+            "y": 0
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Group",
+            "x": 2,
+            "y": 0,
+            "widgets":[
+                {
+                    "type": "DataWidget",
+                    "name": "acceleration",
+                    "label": "Acceleration",
+                    "unit": "m/s2",
+                    "round": 2,
+                    "source": "rockets.anirniq.acquisition.acceleration",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "temperature",
+                    "label": "Temperature",
+                    "unit": "C",
+                    "round": 2,
+                    "source": "rockets.anirniq.acquisition.temperature",
+                    "x": 1,
+                    "y": 0
+                }
+            ]
+
+        },
+        {
+            "type": "TerminalWidget",
+            "label": "All data",
+            "round": 4,
+            "source": "all",
+            "x": 0,
+            "y": 1,
+            "xspan": 3
+        }
+    ]
+}
