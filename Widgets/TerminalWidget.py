@@ -15,13 +15,6 @@ class TerminalWidget(Widget):
     def setLabel(self, text):
         self.label = text
 
-    def setSource(self, source):
-        #If we have only one source (a string), we need to put it in a list
-        if isinstance(source, str):
-            self.requiredData = [source]
-        else:
-            self.requiredData = source
-
     def setRounding(self, round):
         self.round = round
 

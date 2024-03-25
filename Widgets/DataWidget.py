@@ -17,9 +17,6 @@ class DataWidget(Widget):
     def setLabel(self, text):
         self.label = text
 
-    def setSource(self, source):
-        self.requiredData = [source]
-
     def setUnit(self, unit):
         self.unit = unit
 
@@ -35,7 +32,6 @@ class DataWidget(Widget):
     # Here we are receiving measurements wanted in requiredData. 
     # We need to separate them with the value of the source.
     def setData(self, data):
-        self.data = data
         for i in self.requiredData:
             if data.source == i:
                 self.dataValue = str(round(data.value,self.round))

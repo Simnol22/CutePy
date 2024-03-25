@@ -5,7 +5,7 @@
             "type": "DataWidget",
             "name": "altitude",
             "label": "Altitude",
-            "unit": "m",
+            "unit": "ft",
             "round": 0,
             "source": "rockets.anirniq.acquisition.altitude",
             "x": 0,
@@ -51,13 +51,21 @@
 
         },
         {
-            "type": "TerminalWidget",
-            "label": "All data",
-            "round": 4,
-            "source": "all",
+            "type": "ChartWidget",
+            "title": "Altitude",
+            "source": "rockets.anirniq.acquisition.altitude",
             "x": 0,
             "y": 1,
-            "xspan": 3
+            "xspan": 2
+        },
+        {
+            "type": "TerminalWidget",
+            "label": "All data",
+            "round": 2,
+            "source": "all",
+            "x": 2,
+            "y": 1,
+            "xspan": 1
         }
     ]
 }

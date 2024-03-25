@@ -3,6 +3,7 @@ from Widgets.PrintWidget import PrintWidget
 from Widgets.CompassWidget import CompassWidget
 from Widgets.TerminalWidget import TerminalWidget
 from Widgets.GroupWidget import GroupWidget
+from Widgets.ChartWidget import ChartWidget
 
 class WidgetFactory:
     def __init__(self, parent):
@@ -56,6 +57,8 @@ class WidgetFactory:
                 return self.buildTerminalWidget(config, parent)
             elif config["type"] == "GroupWidget":
                 return self.buildGroupWidget(config, parent)
+            elif config["type"] == "ChartWidget":
+                return self.buildChartWidget(config, parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -73,7 +76,6 @@ class WidgetFactory:
             return None
         name = config.get("label")
         widget = GroupWidget(parent, name)
-        print("Building group widget", config)
         self.buildAll(config, widget.grid, widget)
         return widget
     
@@ -109,3 +111,12 @@ class WidgetFactory:
             widget.setRounding(config["round"])
         return widget
     
+    def buildChartWidget(self, config, parent):
+        if not (config.get("source")):
+            print ("ChartWidget has no source")
+            return None
+        widget = ChartWidget(parent)
+        widget.setSource(config["source"])
+        if config.get("title") is not None:
+            widget.setTitle(config["title"])
+        return widget

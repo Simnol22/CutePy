@@ -11,8 +11,6 @@ class GroupWidget(Widget):
         self.box.setLayout(self.grid)
         self.layout.addWidget(self.box)
         self.layout.setContentsMargins(10,10,10,10)
-        #List of required data for this widget. Empty since its a group. Could add something if wanted
-        self.requiredData = [] 
         
     def setName(self, name):
         self.name = name
