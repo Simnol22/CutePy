@@ -6,8 +6,8 @@ from datetime import datetime
 
 
 class ChartWidget(Widget):
-    def __init__(self,name):
-        super().__init__(name)
+    def __init__(self,parent):
+        super().__init__(parent)
         #On utilise un DateAxisItem pour afficher les dates sur l'axe des x
         dateAxis = DateAxisItem()
         self.chart = pg.PlotWidget(axisItems = {'bottom': dateAxis})

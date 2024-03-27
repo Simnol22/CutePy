@@ -4,6 +4,7 @@ from Widgets.CompassWidget import CompassWidget
 from Widgets.TerminalWidget import TerminalWidget
 from Widgets.GroupWidget import GroupWidget
 from Widgets.ChartWidget import ChartWidget
+from Widgets.ImageWidget import ImageWidget
 
 class WidgetFactory:
     def __init__(self, parent):
@@ -35,7 +36,7 @@ class WidgetFactory:
                     if widgetConfig.get("width"):
                         widget.setFixedWidth(widgetConfig["width"])
                     if widgetConfig.get("height"):
-                         widget.setFixedWidth(widgetConfig["width"])
+                         widget.setFixedHeight(widgetConfig["height"])
             else:
                 if widgetConfig.get("type"):
                     print("Widget", widgetConfig["type"], "has no x or y value")
@@ -59,6 +60,8 @@ class WidgetFactory:
                 return self.buildGroupWidget(config, parent)
             elif config["type"] == "ChartWidget":
                 return self.buildChartWidget(config, parent)
+            elif config["type"] == "ImageWidget":
+                return self.buildImageWidget(config, parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -119,4 +122,11 @@ class WidgetFactory:
         widget.setSource(config["source"])
         if config.get("title") is not None:
             widget.setTitle(config["title"])
+        return widget
+    
+    def buildImageWidget(self, config, parent):
+        if not (config.get("image")):
+            print ("ImageWidget has no image path")
+            return None
+        widget = ImageWidget(parent, config.get("image"))
         return widget

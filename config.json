@@ -2,22 +2,18 @@
     "name": "Anirniq",
     "widgets": [
         {
+            "type": "ImageWidget",
+            "image": "Resources/rockets.png",
+            "x": 0,
+            "y": 0
+        },
+        {
             "type": "DataWidget",
             "name": "altitude",
             "label": "Altitude",
             "unit": "ft",
             "round": 0,
             "source": "rockets.anirniq.acquisition.altitude",
-            "x": 0,
-            "y": 0
-        },
-        {
-            "type": "DataWidget",
-            "name": "vitesse",
-            "label": "Vitesse",
-            "unit": "ft/s",
-            "round": 2,
-            "source": "rockets.anirniq.acquisition.vertical_velocity",
             "x": 1,
             "y": 0
         },
