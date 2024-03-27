@@ -1,12 +1,13 @@
 from Widgets.Widget import Widget
 from PySide6.QtWidgets import QLabel
+from PySide6.QtCore import Qt
 
 class DataWidget(Widget):
     def __init__(self, parent):
         super(DataWidget, self).__init__(parent)
         self.dataLabel = QLabel("Not initialised")
-        self.layout.addWidget(self.dataLabel)
-        self.setStyleSheet("border: 1px solid black;")
+        self.layout.addWidget(self.dataLabel,alignment=Qt.AlignCenter)
+        #self.setStyleSheet("border: 1px solid black;")
         self.dataValue = "No value"
         self.label = "No label"
         self.unit = ""
