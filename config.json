@@ -5,42 +5,84 @@
             "type": "ImageWidget",
             "image": "Resources/rockets.png",
             "x": 0,
-            "y": 0
-        },
-        {
-            "type": "DataWidget",
-            "name": "Vitesse",
-            "label": "Vitesse",
-            "unit": "ft",
-            "round": 0,
-            "source": "rockets.anirniq.acquisition.vertical_velocity",
-            "x": 1,
-            "y": 0
+            "y": 0,
+            "width":300
         },
         {
             "type": "GroupWidget",
-            "label": "Group",
-            "x": 2,
+            "label": "Rocket status",
+            "x": 1,
             "y": 0,
             "widgets":[
                 {
                     "type": "DataWidget",
-                    "name": "acceleration",
-                    "label": "Acceleration",
-                    "unit": "m/s2",
-                    "round": 2,
-                    "source": "rockets.anirniq.acquisition.acceleration",
+                    "name": "charge",
+                    "label": "Status",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.charge",
                     "x": 0,
                     "y": 0
                 },
                 {
                     "type": "DataWidget",
-                    "name": "temperature",
-                    "label": "Temperature",
-                    "unit": "C",
-                    "round": 2,
-                    "source": "rockets.anirniq.acquisition.temperature",
+                    "name": "charge",
+                    "label": "fun widget diagram or smt",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.charge",
                     "x": 1,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "charge",
+                    "label": "Widget gyro",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.charge",
+                    "x": 2,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Charges",
+            "x": 2,
+            "y": 0,
+            "widgets":[
+                {
+                    "type": "DataWidget",
+                    "name": "charge",
+                    "label": "Charge 1",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.charge",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "charge",
+                    "label": "Charge 2",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.charge",
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "charge",
+                    "label": "Charge 3",
+                    "round": 0,
+                    "source": "rockets.timmiaq.acquisition.charge",
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "charge",
+                    "label": "Charge 4",
+                    "round": 0,
+                    "source": "rockets.timmiaq.acquisition.charge",
+                    "x": 3,
                     "y": 0
                 }
             ]
@@ -89,7 +131,7 @@
             "source": "all",
             "x": 2,
             "y": 1,
-            "xspan": 1
+            "width":300
         },
         {"type": "GroupWidget",
         "label": "Acceleration",
@@ -123,7 +165,8 @@
                 "source": "rockets.anirniq.acquisition.acceleration",
                 "x": 1,
                 "y": 0,
-                "yspan": 2
+                "yspan": 2,
+                "width": 300
             },
             {
                 "type": "DataWidget",

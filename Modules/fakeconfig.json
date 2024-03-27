@@ -36,6 +36,24 @@
         "broadcast": ["cute"]
     },
     {
+        "id": "fake.charge",
+        "alpha": 1,
+        "omega": 0,
+        "phi": 0,
+        "n":1,
+        "mid": "rockets.anirniq.acquisition.charge",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.charge_timmiaq",
+        "alpha": 1,
+        "omega": 0,
+        "phi": 0,
+        "n":0,
+        "mid": "rockets.timmiaq.acquisition.charge",
+        "broadcast": ["cute"]
+    },
+    {
         "id": "fake.altitude",
         "alpha": 15000,
         "omega": 0.002,
