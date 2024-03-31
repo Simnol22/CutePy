@@ -1,6 +1,7 @@
 from Widgets.Widget import Widget
 from PySide6.QtWidgets import QLabel, QVBoxLayout
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QPalette, QColor
 
 class StatusWidget(Widget):
     def __init__(self, parent, status):
@@ -13,13 +14,12 @@ class StatusWidget(Widget):
         self.statusLayout.setSpacing(0)
         self.arrowIcon = '▼'
         self.statusPrevious = QLabel()
-        self.statusPrevious.setStyleSheet('color: rgba(255, 255, 255, 80)')
         self.statusActual = QLabel()
         self.statusActual.setStyleSheet('font-size: 18pt')
         self.statusNext = QLabel()
-        self.statusNext.setStyleSheet('color: rgba(255, 255, 255, 80)')
         self.prevArrow = QLabel(self.arrowIcon)
         self.nextArrow = QLabel(self.arrowIcon)
+        self.setLabelColor()
         self.statusLayout.addWidget(self.statusPrevious,alignment=Qt.AlignCenter)
         self.statusLayout.addWidget(self.prevArrow,alignment=Qt.AlignCenter)
         self.statusLayout.addWidget(self.statusActual,alignment=Qt.AlignCenter)
@@ -28,6 +28,13 @@ class StatusWidget(Widget):
         self.layout.addLayout(self.statusLayout)
         self.refresh()
 
+    #Method used for code organization. This is setting the color of the label (essentially keeping the base color but changing the alpha value)
+    def setLabelColor(self):
+        current_color = self.statusPrevious.palette().color(self.statusPrevious.foregroundRole())
+        new_color = QColor(current_color.red(), current_color.green(), current_color.blue(), 128)  # Setting alpha to 128 (50% transparency)
+        self.statusPrevious.setStyleSheet("color: rgba({}, {}, {}, {})".format(new_color.red(), new_color.green(), new_color.blue(), new_color.alpha()))
+        self.statusNext.setStyleSheet("color: rgba({}, {}, {}, {})".format(new_color.red(), new_color.green(), new_color.blue(), new_color.alpha()))
+
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
@@ -35,6 +42,7 @@ class StatusWidget(Widget):
                 
             
     def refresh(self):
+        self.statusVal = "3"
         currentVal = int(self.statusVal)
 
         if currentVal == 0: 
