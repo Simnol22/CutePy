@@ -1,17 +1,21 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout
 from PySide6 import QtCore
+from PySide6.QtCore import Signal
 
 class Widget(QWidget):
+    refreshSignal = Signal()
     def __init__(self, parent):
         super(Widget, self).__init__(parent)
         self.parent = parent
         self.name = None
         self.layout = QVBoxLayout()
-        self.setStyleSheet("border: 1px solid black;")
+        #self.setStyleSheet("border: 1px solid black;")
         self.layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.layout)
         self.requiredData = []
-    
+        # Connecter le signal au slot 
+        self.refreshSignal.connect(self.refresh)
+
     def setSource(self, source):
         #If we have only one source (a string), we need to put it in a list
         if isinstance(source, str):
@@ -19,6 +23,12 @@ class Widget(QWidget):
         else:
             self.requiredData = source
     
+    def refreshData(self):
+        self.refreshSignal.emit()
+    
+    def refresh(self):
+        pass
+
     # onUpdate is called when the widget is updated in the view thread looop
     # This method can be overriden by any widget if wanted.
     # This is not to update the data, but to update the widget itself if necessary

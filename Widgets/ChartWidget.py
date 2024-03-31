@@ -27,8 +27,7 @@ class ChartWidget(Widget):
         for i in self.requiredData:
             if data.source == i:
                 self.x.append(data.value)
-                self.y.append(data.timestamp)
-                self.refresh()                
+                self.y.append(data.timestamp)             
     
     def refresh(self):
         self.dataLine.setData(self.y,self.x)

@@ -24,11 +24,25 @@
                     "y": 0
                 },
                 {
-                    "type": "DataWidget",
-                    "name": "charge",
-                    "label": "fun widget diagram or smt",
-                    "round": 0,
+                    "type": "StatusWidget",
+                    "name": "status",
                     "source": "rockets.anirniq.acquisition.charge",
+                    "status":{
+                        "0":  "Innit",
+                        "1": "Stanby",
+                        "2": "Launch",
+                        "3": "Ascent",
+                        "4": "Burnout",
+                        "5": "Coasting",
+                        "6": "Apogee",
+                        "7": "DrogueDep",
+                        "8": "DrogueDes",
+                        "9": "MainDep",
+                        "10": "MainDes",
+                        "11": "Landing",
+                        "12": "Recovery",
+                        "13": "PickedUp"
+                    },
                     "x": 1,
                     "y": 0
                 },

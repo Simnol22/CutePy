@@ -62,4 +62,5 @@ class CuteView:
             for i in widget.requiredData:
                 if i == measurement.source or i == "all":
                     widget.setData(measurement)
+                    widget.refreshData()
 

@@ -5,6 +5,7 @@ from Widgets.TerminalWidget import TerminalWidget
 from Widgets.GroupWidget import GroupWidget
 from Widgets.ChartWidget import ChartWidget
 from Widgets.ImageWidget import ImageWidget
+from Widgets.StatusWidget import StatusWidget
 
 class WidgetFactory:
     def __init__(self, parent):
@@ -62,6 +63,8 @@ class WidgetFactory:
                 return self.buildChartWidget(config, parent)
             elif config["type"] == "ImageWidget":
                 return self.buildImageWidget(config, parent)
+            elif config["type"] == "StatusWidget":
+                return self.buildStatusWidget(config, parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -129,4 +132,11 @@ class WidgetFactory:
             print ("ImageWidget has no image path")
             return None
         widget = ImageWidget(parent, config.get("image"))
+        return widget
+    
+    def buildStatusWidget(self, config, parent):
+        if not (config.get("source") or config.get('status')):
+            print ("StatusWidget has no source or status")
+            return None
+        widget = StatusWidget(parent, config.get("status"))
         return widget
