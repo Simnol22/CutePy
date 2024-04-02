@@ -14,15 +14,7 @@
             "x": 1,
             "y": 0,
             "widgets":[
-                {
-                    "type": "DataWidget",
-                    "name": "charge",
-                    "label": "Status",
-                    "round": 0,
-                    "source": "rockets.anirniq.acquisition.charge",
-                    "x": 0,
-                    "y": 0
-                },
+
                 {
                     "type": "StatusWidget",
                     "name": "status",
@@ -35,15 +27,15 @@
                         "4": "Burnout",
                         "5": "Coasting",
                         "6": "Apogee",
-                        "7": "DrogueDep",
-                        "8": "DrogueDes",
-                        "9": "MainDep",
-                        "10": "MainDes",
+                        "7": "Drogue Dep",
+                        "8": "Drogue Desc",
+                        "9": "Main Dep",
+                        "10": "Main Desc",
                         "11": "Landing",
                         "12": "Recovery",
                         "13": "PickedUp"
                     },
-                    "x": 1,
+                    "x": 0,
                     "y": 0
                 },
                 {
@@ -52,7 +44,7 @@
                     "label": "Widget gyro",
                     "round": 0,
                     "source": "rockets.anirniq.acquisition.charge",
-                    "x": 2,
+                    "x": 1,
                     "y": 0
                 }
             ]

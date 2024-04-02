@@ -7,7 +7,6 @@ class StatusWidget(Widget):
     def __init__(self, parent, status):
         super().__init__(parent)
         self.status = status
-        print(self.status)
         self.statusVal = 0
         self.statusLayout = QVBoxLayout(alignment=Qt.AlignCenter)
         self.statusLayout.setContentsMargins(0,0,0,0)
@@ -44,20 +43,17 @@ class StatusWidget(Widget):
     def refresh(self):
         self.statusVal = "3"
         currentVal = int(self.statusVal)
-
+        self.statusActual.setText(self.status.get(str(currentVal)))
+        self.prevArrow.setText(self.arrowIcon)
+        self.nextArrow.setText(self.arrowIcon)
         if currentVal == 0: 
             self.statusPrevious.setText("")
-            self.statusActual.setText(self.status.get("0"))
-            self.statusNext.setText(self.status.get("1"))
+            self.statusNext.setText(self.status.get(str(currentVal+1)))
             self.prevArrow.setText("")
-        elif currentVal == 13:
-            self.statusPrevious.setText(self.status.get("12"))
-            self.statusActual.setText(self.status.get("13"))
+        elif currentVal == len(self.status) - 1:
+            self.statusPrevious.setText(self.status.get(str(currentVal-1)))
             self.statusNext.setText("")
             self.nextArrow.setText("")
         else:
-            self.prevArrow.setText(self.arrowIcon)
-            self.nextArrow.setText(self.arrowIcon)
             self.statusPrevious.setText(self.status.get(str(currentVal-1)))
-            self.statusActual.setText(self.status.get(str(currentVal)))
             self.statusNext.setText(self.status.get(str(currentVal+1)))

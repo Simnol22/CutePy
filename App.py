@@ -5,7 +5,7 @@ from Modules.SerialModule import SerialModule
 from threading import Thread
 
 import signal 
-
+import sys
 class App: # Controlleur
     def __init__(self):
         self.view = None
@@ -36,9 +36,9 @@ class App: # Controlleur
         print("Initialising View")
         view = CuteView(frequence=20)
         self.view = view
-        print("Starting view threads")
-        viewThread = Thread(target=view.run)
-        viewThread.start()
+        #print("Starting view threads")
+        #viewThread = Thread(target=view.run)
+        #viewThread.start()
         # This will start the Qt event loop on the main thread. No other instructions will be executed until the application is closed
         self.view.startApp()
         print("Done !") 
@@ -52,4 +52,10 @@ class App: # Controlleur
 if __name__ == '__main__':
     # Deal with arguments here if needed
     app = App()
+    sys._excepthook = sys.excepthook 
+    def exception_hook(exctype, value, traceback):
+        print(exctype, value, traceback)
+        sys._excepthook(exctype, value, traceback) 
+        sys.exit(1) 
+    sys.excepthook = exception_hook 
     app.run()
