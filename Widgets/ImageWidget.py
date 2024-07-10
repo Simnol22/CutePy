@@ -1,26 +1,26 @@
-from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QLabel
 from Widgets.Widget import Widget
+from PySide6.QtWidgets import QLabel, QVBoxLayout
+from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
 
 class ImageWidget(Widget):
-    def __init__(self, parent, image):
+    def __init__(self, parent, image, width=None):
         super().__init__(parent)
         self.image = image
         self.pixmap = QPixmap(image)
         self.imageLabel = QLabel()
+        # Set width if specified
+        if width is not None:
+            self.imageWidth = width
+            self.pixmap = self.pixmap.scaledToWidth(self.imageWidth, Qt.SmoothTransformation)
         self.imageLabel.setPixmap(self.pixmap)
-        self.layout.addWidget(self.imageLabel)
-        self.imageLabel.show()
 
+        # Set up layout
+        self.vlayout = QVBoxLayout()
+        self.vlayout.addWidget(self.imageLabel)
+        self.layout.addLayout(self.vlayout)
 
-    def move(self, x, y):
-        self.move(x, y)
-    
-    # onUpdate for resizing image if we set up a different size for the widget
     def onUpdate(self):
-        if self.pixmap.width() != self.width():
-            self.pixmap = self.pixmap.scaledToWidth(self.width(), Qt.SmoothTransformation)
-            self.imageLabel.setPixmap(self.pixmap)
-        
-
+        print("Resizing image")
+        self.pixmap = self.pixmap.scaled(self.width(), self.height(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.imageLabel.setPixmap(self.pixmap)

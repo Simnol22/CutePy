@@ -145,7 +145,7 @@ class WidgetFactory:
         if not (config.get("image")):
             print ("ImageWidget has no image path")
             return None
-        widget = ImageWidget(parent, config.get("image"))
+        widget = ImageWidget(parent, config.get("image"),config.get("width") )
         return widget
     
     def buildStatusWidget(self, config, parent):

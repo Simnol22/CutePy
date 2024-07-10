@@ -11,8 +11,8 @@ class Widget(QWidget):
         self.parent = parent
         self.name = None
         self.layout = QVBoxLayout()
-        self.setStyleSheet("border: 1px solid black;")
-        #self.layout.setContentsMargins(0,0,0,0)
+        #self.setStyleSheet("border: 1px solid black;")
+        self.layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.layout)
         self.requiredData = []
         # Connecter le signal au slot 
