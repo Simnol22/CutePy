@@ -1,6 +1,6 @@
 #PySide imports
 from PySide6.QtWidgets import QApplication
-
+from PySide6.QtCore import QThreadPool
 #Widgets
 from Widgets.Window import Window
 from Widgets.WidgetFactory import WidgetFactory
@@ -12,16 +12,17 @@ import json
 
 
 class CuteView:
-    def __init__(self,frequence = 1):
+    def __init__(self, parent, frequence = 1, config = "config.json"):
         self.widgets = []
         self.freq = frequence
-        self.jsonConfig = json.load(open("config.json"))
+        self.parent = parent
+        self.jsonConfig = json.load(open(config))
         #Opening the config file
         if not self.jsonConfig:
             print("Error: Could not open config file")
             sys.exit(1)
         print("Opened config file")
-
+        
         self.app = QApplication(sys.argv)
         self.createWidgets()
 
@@ -34,7 +35,19 @@ class CuteView:
     #Register a widget to the data flow
     def registerWidget(self,widget):
         self.widgets.append(widget)
+        
+    def sendCommand(self, command, val=None):
+        self.parent.sendCommand(command, val)
 
+    #get the value of a field
+    def getFieldValue(self, fieldname):
+        if fieldname is not None and fieldname != "":
+            for widget in self.widgets:
+                if widget.name == fieldname:
+                    fieldval = widget.getValue()
+                    if fieldval != "":
+                        return widget.getValue()
+                    return None
     # CuteView Thread loop. This is just for refreshing the widgets information
     def run(self):
         try:
@@ -47,7 +60,7 @@ class CuteView:
     
     # Start the Qt event loop on the main thread. No other instructions will be executed until the application is closed
     def startApp(self):
-        self.app.exec() 
+        self.app.exec_() 
 
     # Loop for all widgets. Since we have data transfer by reference, 
     # we don't need to manualy update the widgets for now. Might come in handy for some widgets
@@ -61,6 +74,6 @@ class CuteView:
         for widget in self.widgets:
             for i in widget.requiredData:
                 if i == measurement.source or i == "all":
-                    widget.setData(measurement)
+                    widget.measurementData(measurement)
                     widget.refreshData()
 

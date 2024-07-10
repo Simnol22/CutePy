@@ -19,7 +19,7 @@ class ImageWidget(Widget):
     
     # onUpdate for resizing image if we set up a different size for the widget
     def onUpdate(self):
-        if self.pixmap.width() > self.width():
+        if self.pixmap.width() != self.width():
             self.pixmap = self.pixmap.scaledToWidth(self.width(), Qt.SmoothTransformation)
             self.imageLabel.setPixmap(self.pixmap)
         

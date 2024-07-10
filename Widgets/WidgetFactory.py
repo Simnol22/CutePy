@@ -6,6 +6,9 @@ from Widgets.GroupWidget import GroupWidget
 from Widgets.ChartWidget import ChartWidget
 from Widgets.ImageWidget import ImageWidget
 from Widgets.StatusWidget import StatusWidget
+from Widgets.ButtonWidget import ButtonWidget
+from Widgets.TextFieldWidget import TextFieldWidget
+from Widgets.ChargeWidget import ChargeWidget
 
 class WidgetFactory:
     def __init__(self, parent):
@@ -30,6 +33,7 @@ class WidgetFactory:
                         xspan = widgetConfig["xspan"]
                     if widgetConfig.get("yspan"):
                         yspan = widgetConfig["yspan"]
+                    widget.name = widgetConfig.get("name")
                 
                     grid.addWidget(widget, widgetConfig["x"], widgetConfig["y"],xspan,yspan)
 
@@ -65,6 +69,12 @@ class WidgetFactory:
                 return self.buildImageWidget(config, parent)
             elif config["type"] == "StatusWidget":
                 return self.buildStatusWidget(config, parent)
+            elif config["type"] == "ButtonWidget":
+                return self.buildButtonWidget(config, parent)
+            elif config["type"] == "TextFieldWidget":
+                return self.buildTextFieldWidget(config,parent)
+            elif config["type"] == "ChargeWidget":
+                return self.buildChargeWidget(config, parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -89,13 +99,17 @@ class WidgetFactory:
         if not (config.get("label") or config.get("source")):
             print ("DataWidget has no label or source")
             return None
-        widget = DataWidget(parent)
+        position = "vertical"
+        if config.get("position"):
+            position = config["position"]
+        widget = DataWidget(parent,position)
         widget.setLabel(config["label"])
         widget.setSource(config["source"])
         if config.get("unit"):
             widget.setUnit(config["unit"])
         if config.get("round") is not None:
             widget.setRounding(config["round"])
+        widget.updateDataLabel()
         return widget
     
     def buildPrintWidget(self, config, parent):
@@ -139,4 +153,21 @@ class WidgetFactory:
             print ("StatusWidget has no source or status")
             return None
         widget = StatusWidget(parent, config.get("status"))
+        return widget
+    
+    def buildButtonWidget(self, config, parent):
+        if not (config.get("label") or config.get("command")):
+            print ("ButtonWidget has no label or command")
+            return None
+        widget = ButtonWidget(parent, config.get("label"), config.get("command"))
+        widget.setFieldName(config.get("fieldname"))
+        widget.setView(self.view)
+        return widget
+
+    def buildTextFieldWidget(self, config, parent):
+        widget = TextFieldWidget(parent, config.get("label"), config.get("value"), config.get("placeholder"), config.get("position"))
+        return widget
+    
+    def buildChargeWidget(self, config, parent):
+        widget = ChargeWidget(parent, config.get("label"))
         return widget

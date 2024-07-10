@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QLabel
 from PySide6.QtCore import Qt
 
 class DataWidget(Widget):
-    def __init__(self, parent):
+    def __init__(self, parent, position="vertical"):
         super(DataWidget, self).__init__(parent)
         self.dataLabel = QLabel("Not initialised")
         self.layout.addWidget(self.dataLabel,alignment=Qt.AlignCenter)
@@ -13,6 +13,7 @@ class DataWidget(Widget):
         self.unit = ""
         self.round = 2
         self.requiredData = []
+        self.delimiter = "\n" if position == "vertical" else " : "
         self.updateDataLabel()
 
     def setLabel(self, text):
@@ -28,13 +29,13 @@ class DataWidget(Widget):
         self.move(x,y)
 
     def updateDataLabel(self):
-        self.dataLabel.setText(self.label + "\n" + self.dataValue + " "+ self.unit)
+        self.dataLabel.setText(self.label + self.delimiter + self.dataValue + " "+ self.unit)
 
     # Here we are receiving measurements wanted in requiredData. 
     # We need to separate them with the value of the source.
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
-                self.dataValue = str(round(data.value,self.round))
+                self.dataValue = str(round(data.value,2))
                 # Update the data label when recieving new data
                 self.updateDataLabel()
