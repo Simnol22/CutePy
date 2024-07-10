@@ -5,10 +5,10 @@ class RadioPacket():
         self.nodeGroupId = None
         self.nodeId = None
         self.messageId = None
-        self.payload = bytearray(8)
+        self.payload = bytearray(4)
         self.checksum = None
         
-        self.size = 12 # This is the size of the packet. 1 Byte for each ID, 8 bytes for the payload and 1 byte for the checksum.
+        self.size = 8 # This is the size of the packet. 1 Byte for each ID, 8 bytes for the payload and 1 byte for the checksum.
         
         self.CRC_8_TABLE =[
 	      0, 94,188,226, 97, 63,221,131,194,156,126, 32,163,253, 31, 65,
@@ -28,10 +28,13 @@ class RadioPacket():
 	    233,183, 85, 11,136,214, 52,106, 43,117,151,201, 74, 20,246,168,
 	    116, 42,200,150, 21, 75,169,247,182,232, 10, 84,215,137,107, 53
         ]
-
+	    
     def radio_compute_crc(self):
         crc = 0
         for i in range(0, self.size-1):
             crc = self.CRC_8_TABLE[crc ^ self.data[i]]
         return crc
     
+    def to_bytearray(self):
+        return bytearray([self.nodeGroupId,self.nodeId,self.messageId]) + self.payload + bytearray([self.checksum])
+        

@@ -30,274 +30,313 @@
 ]>
 <protocol name="rockets" c_prefix="CAN">
     <node_group name="anirniq" id="0">
-    <node id="0" name="emergency">
-        <message_group name="engine">
-            <message id="0" name="stop" type="int" />
-        </message_group>
-    </node>
+        <node id="0" name="emergency">
+            <message_group name="engine">
+                <message id="0" name="stop" type="int" />
+            </message_group>
+        </node>
 
-    <node id="1" name="mission">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="rocket_status" type="int" />
+        <node id="1" name="mission">
+            <message id="0" name="status" type="int" />
+            <message id="1" name="rocket_status" type="int" />
 
-        <message_group name="charge_status">
-            <message id="2" name="drogue" type="int" command="yes" />
-            <message id="3" name="main" type="int" command="yes" />
-            <message id="4" name="payload" type="int" command="yes" />
-            <message id="5" name="bonus" type="int" command="yes" />
-        </message_group>
+            <message_group name="charge_status">
+                <message id="2" name="drogue" type="int" command="yes" />
+                <message id="3" name="main" type="int" command="yes" />
+                <message id="4" name="payload" type="int" command="yes" />
+                <message id="5" name="bonus" type="int" command="yes" />
+            </message_group>
 
-        <message id="6" name="altitude" type="float" />
-        <message id="7" name="pressure" type="float" />
-        <message id="8" name="velocity" type="float" />
-        <message id="9" name="acceleration" type="float" />
-    </node>
+            <message id="6" name="altitude" type="float" />
+            <message id="7" name="pressure" type="float" />
+            <message id="8" name="velocity" type="float" />
+            <message id="9" name="acceleration" type="float" />
+        </node>
 
-    <node id="2" name="communication">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="sleep" type="int" />
+        <node id="2" name="communication">
+            <message id="0" name="status" type="int" />
+            <message id="1" name="sleep" type="int" />
 
-        <message_group name="eject">
-            <message id="2" name="drogue" type="int" command="yes" />
-            <message id="3" name="main" type="int" command="yes" />
-        </message_group>
+            <message_group name="eject">
+                <message id="2" name="drogue" type="int" command="yes" />
+                <message id="3" name="main" type="int" command="yes" />
+            </message_group>
 
-        <message_group name="gnss">
-            <message id="4" name="lat" type="float" />
-            <message id="5" name="lon" type="float" />
-        </message_group>
+            <message_group name="gnss">
+                <message id="4" name="lat" type="float" />
+                <message id="5" name="lon" type="float" />
+                <message id="6" name="alt" type="float" />
+            </message_group>
 
-        <message_group name="engine_sequence">
-            <message id="6" name="set" type="int" command="yes" />
-            <message id="7" name="start" type="int" command="yes" />
-            <message id="8" name="stop" type="int" command="yes" />
-        </message_group>
-    </node>
+            <message_group name="engine_sequence">
+                <message id="7" name="set" type="int" command="yes" />
+                <message id="8" name="start" type="int" command="yes" />
+                <message id="9" name="stop" type="int" command="yes" />
+            </message_group>
+        </node>
 
-    <node id="3" name="acquisition">
-        <message id="0" name="status" type="int" />
-        <message id="3" name="altitude" type="float" />
-        <message id="4" name="vertical_velocity" type="float" />
-        <message id="13" name="imu_temperature" type="float" />
+        <node id="3" name="acquisition">
+            <message id="0" name="status" type="int" />
+            <message id="3" name="altitude" type="float" />
+            <message id="4" name="vertical_velocity" type="float" />
+            <message id="13" name="imu_temperature" type="float" />
 
-        <message_group name="air">
-            <message id="1" name="pressure" type="float" />
-            <message id="2" name="temperature" type="float" />
-        </message_group>
+            <message_group name="air">
+                <message id="1" name="pressure" type="float" />
+                <message id="2" name="temperature" type="float" />
+            </message_group>
 
-        <message_group name="acceleration">
-            <message id="4" name="x" type="float" />
-            <message id="5" name="y" type="float" />
-            <message id="6" name="z" type="float" />
-        </message_group>
+            <message_group name="acceleration">
+                <message id="4" name="x" type="float" />
+                <message id="5" name="y" type="float" />
+                <message id="6" name="z" type="float" />
+            </message_group>
 
-        <message_group name="attitude">
-            <message id="7" name="x" type="float" />
-            <message id="8" name="y" type="float" />
-            <message id="9" name="z" type="float" />
-        </message_group>
+            <message_group name="attitude">
+                <message id="7" name="x" type="float" />
+                <message id="8" name="y" type="float" />
+                <message id="9" name="z" type="float" />
+            </message_group>
 
-        <message_group name="magnetic_field">
-            <message id="10" name="x" type="float" />
-            <message id="11" name="y" type="float" />
-            <message id="12" name="z" type="float" />
-        </message_group>
+            <message_group name="magnetic_field">
+                <message id="10" name="x" type="float" />
+                <message id="11" name="y" type="float" />
+                <message id="12" name="z" type="float" />
+            </message_group>
 
-        <message_group name="delta_v">
-            <message id="14" name="x" type="float" />
-            <message id="15" name="y" type="float" />
-            <message id="16" name="z" type="float" />
-        </message_group>
+            <message_group name="delta_v">
+                <message id="14" name="x" type="float" />
+                <message id="15" name="y" type="float" />
+                <message id="16" name="z" type="float" />
+            </message_group>
 
-        <message_group name="rate_of_turn">
-            <message id="17" name="x" type="float" />
-            <message id="18" name="y" type="float" />
-            <message id="19" name="z" type="float" />
-        </message_group>
+            <message_group name="rate_of_turn">
+                <message id="17" name="x" type="float" />
+                <message id="18" name="y" type="float" />
+                <message id="19" name="z" type="float" />
+            </message_group>
 
-        <message_group name="angle">
-            <message id="20" name="pitch" type="float" />
-            <message id="21" name="roll" type="float" />
-            <message id="22" name="yaw" type="float" />
-        </message_group>
+            <message_group name="angle">
+                <message id="20" name="pitch" type="float" />
+                <message id="21" name="roll" type="float" />
+                <message id="22" name="yaw" type="float" />
+            </message_group>
 
-        <message_group name="gps">
-            <message id="23" name="lat" type="float" />
-            <message id="24" name="lon" type="float" />
-        </message_group>
+            <message_group name="gps">
+                <message id="23" name="lat" type="float" />
+                <message id="24" name="lon" type="float" />
+            </message_group>
 
-        <message_group name="quaternion">
-            <message id="25" name="q0" type="float" />
-            <message id="26" name="q1" type="float" />
-            <message id="27" name="q2" type="float" />
-            <message id="28" name="q3" type="float" />
-        </message_group>
-        
-    </node>
+            <message_group name="quaternion">
+                <message id="25" name="q0" type="float" />
+                <message id="26" name="q1" type="float" />
+                <message id="27" name="q2" type="float" />
+                <message id="28" name="q3" type="float" />
+            </message_group>
+        </node>
 
-    <node id="4" name="motherboard">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="3v3_voltage" type="float" />
-        <message id="2" name="3v3_amperage" type="float" />
-        <message id="3" name="5v_voltage" type="float" />
-        <message id="4" name="5v_amperage" type="float" />
-        <message id="5" name="vbatt_voltage" type="float" />
-        <message id="6" name="vbatt_amperage" type="float" />
-    </node>
+        <node id="4" name="motherboard">
+            <message id="0" name="status" type="int" />
+            <message id="1" name="3v3_voltage" type="float" />
+            <message id="2" name="3v3_amperage" type="float" />
+            <message id="3" name="5v_voltage" type="float" />
+            <message id="4" name="5v_amperage" type="float" />
+            <message id="5" name="vbatt_voltage" type="float" />
+            <message id="6" name="vbatt_amperage" type="float" />
+        </node>
 
-    <node id="5" name="remote_control">
-        <message id="0" name="status" type="int" />
-    </node>
-
-    <node id="6" name="testbench">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="pressure_1" type="float" />
-        <message id="2" name="pressure_2" type="float" />
-        <message id="3" name="pressure_3" type="float" />
-        <message id="4" name="pressure_4" type="float" />
-        <message id="5" name="temp_1" type="float" />
-        <message id="6" name="temp_2" type="float" />
-        <message id="7" name="temp_3" type="float" />
-        <message id="8" name="temp_4" type="float" />
-        <message id="9" name="temp_5" type="float" />
-        <message id="10" name="temp_6" type="float" />
-        <message id="11" name="load1" type="float" />
-        <message id="12" name="load2" type="float" />
-        <message id="13" name="load3" type="float" />
-        <message id="14" name="valve1_state" type="int" />
-        <message id="15" name="valve2_state" type="int" />
-    </node>
     </node_group>
+
     <node_group name="timmiaq" id="1">
-    <node id="0" name="emergency">
-        <message_group name="engine">
-            <message id="0" name="stop" type="int" />
-        </message_group>
-    </node>
 
-    <node id="1" name="mission">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="rocket_status" type="int" />
-        <message id="2" name="charge_status" type="int" />
-        <message id="3" name="altitude" type="float" />
-        <message id="4" name="pressure" type="float" />
-        <message id="5" name="velocity" type="float" />
-        <message id="6" name="acceleration" type="float" />
-    </node>
+        <node id="0" name="emergency">
+            <message_group name="engine">
+                <message id="0" name="stop" type="int" />
+            </message_group>
+        </node>
 
-    <node id="2" name="communication">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="sleep" type="int" />
+        <node id="1" name="mission">
+            <message id="0" name="status" type="int" />
+            <message id="1" name="rocket_status" type="int" />
+            <message id="2" name="charge_status" type="int" />
+            <message id="3" name="altitude" type="float" />
+            <message id="4" name="pressure" type="float" />
+            <message id="5" name="velocity" type="float" />
+            <message id="6" name="acceleration" type="float" />
+        </node>
 
-        <message_group name="eject">
-            <message id="2" name="drogue" type="int" command="yes" />
-            <message id="3" name="main" type="int" command="yes" />
-        </message_group>
+        <node id="2" name="communication">
+            <message id="0" name="status" type="int" />
+            <message id="1" name="sleep" type="int" />
 
-        <message_group name="gnss">
-            <message id="4" name="lat" type="float" />
-            <message id="5" name="lon" type="float" />
-        </message_group>
+            <message_group name="eject">
+                <message id="2" name="drogue" type="int" command="yes" />
+                <message id="3" name="main" type="int" command="yes" />
+            </message_group>
 
-        <message_group name="engine_sequence">
-            <message id="6" name="set" type="int" command="yes" />
-            <message id="7" name="start" type="int" command="yes" />
-            <message id="8" name="stop" type="int" command="yes" />
-        </message_group>
-    </node>
+            <message_group name="gnss">
+                <message id="4" name="lat" type="float" />
+                <message id="5" name="lon" type="float" />
+            </message_group>
 
-    <node id="3" name="acquisition">
-        <message id="0" name="status" type="int" />
-        <message id="3" name="altitude" type="float" />
-        <message id="4" name="vertical_velocity" type="float" />
-        <message id="13" name="imu_temperature" type="float" />
+            <message_group name="engine_sequence">
+                <message id="6" name="set" type="int" command="yes" />
+                <message id="7" name="start" type="int" command="yes" />
+                <message id="8" name="stop" type="int" command="yes" />
+            </message_group>
+        </node>
 
-        <message_group name="air">
-            <message id="1" name="pressure" type="float" />
-            <message id="2" name="temperature" type="float" />
-        </message_group>
+        <node id="3" name="acquisition">
+            <message id="0" name="status" type="int" />
+            <message id="3" name="altitude" type="float" />
+            <message id="4" name="vertical_velocity" type="float" />
+            <message id="13" name="imu_temperature" type="float" />
 
-        <message_group name="acceleration">
-            <message id="4" name="x" type="float" />
-            <message id="5" name="y" type="float" />
-            <message id="6" name="z" type="float" />
-        </message_group>
+            <message_group name="air">
+                <message id="1" name="pressure" type="float" />
+                <message id="2" name="temperature" type="float" />
+            </message_group>
 
-        <message_group name="attitude">
-            <message id="7" name="x" type="float" />
-            <message id="8" name="y" type="float" />
-            <message id="9" name="z" type="float" />
-        </message_group>
+            <message_group name="acceleration">
+                <message id="4" name="x" type="float" />
+                <message id="5" name="y" type="float" />
+                <message id="6" name="z" type="float" />
+            </message_group>
 
-        <message_group name="magnetic_field">
-            <message id="10" name="x" type="float" />
-            <message id="11" name="y" type="float" />
-            <message id="12" name="z" type="float" />
-        </message_group>
+            <message_group name="attitude">
+                <message id="7" name="x" type="float" />
+                <message id="8" name="y" type="float" />
+                <message id="9" name="z" type="float" />
+            </message_group>
 
-        <message_group name="delta_v">
-            <message id="14" name="x" type="float" />
-            <message id="15" name="y" type="float" />
-            <message id="16" name="z" type="float" />
-        </message_group>
+            <message_group name="magnetic_field">
+                <message id="10" name="x" type="float" />
+                <message id="11" name="y" type="float" />
+                <message id="12" name="z" type="float" />
+            </message_group>
 
-        <message_group name="rate_of_turn">
-            <message id="17" name="x" type="float" />
-            <message id="18" name="y" type="float" />
-            <message id="19" name="z" type="float" />
-        </message_group>
+            <message_group name="delta_v">
+                <message id="14" name="x" type="float" />
+                <message id="15" name="y" type="float" />
+                <message id="16" name="z" type="float" />
+            </message_group>
 
-        <message_group name="angle">
-            <message id="20" name="pitch" type="float" />
-            <message id="21" name="roll" type="float" />
-            <message id="22" name="yaw" type="float" />
-        </message_group>
+            <message_group name="rate_of_turn">
+                <message id="17" name="x" type="float" />
+                <message id="18" name="y" type="float" />
+                <message id="19" name="z" type="float" />
+            </message_group>
 
-        <message_group name="gps">
-            <message id="23" name="lat" type="float" />
-            <message id="24" name="lon" type="float" />
-        </message_group>
+            <message_group name="angle">
+                <message id="20" name="pitch" type="float" />
+                <message id="21" name="roll" type="float" />
+                <message id="22" name="yaw" type="float" />
+            </message_group>
 
-        <message_group name="quaternion">
-            <message id="25" name="q0" type="float" />
-            <message id="26" name="q1" type="float" />
-            <message id="27" name="q2" type="float" />
-            <message id="28" name="q3" type="float" />
-        </message_group>
+            <message_group name="gps">
+                <message id="23" name="lat" type="float" />
+                <message id="24" name="lon" type="float" />
+            </message_group>
+
+            <message_group name="quaternion">
+                <message id="25" name="q0" type="float" />
+                <message id="26" name="q1" type="float" />
+                <message id="27" name="q2" type="float" />
+                <message id="28" name="q3" type="float" />
+            </message_group>
+            
+        </node>
+
+        <node id="4" name="motherboard">
+            <message id="0" name="status" type="int" />
+            <message id="1" name="3v3_voltage" type="float" />
+            <message id="2" name="3v3_amperage" type="float" />
+            <message id="3" name="5v_voltage" type="float" />
+            <message id="4" name="5v_amperage" type="float" />
+            <message id="5" name="vbatt_voltage" type="float" />
+            <message id="6" name="vbatt_amperage" type="float" />
+        </node>
+    </node_group>
+
+    <node_group name="testbench" id="2">
         
-    </node>
-
-    <node id="4" name="motherboard">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="3v3_voltage" type="float" />
-        <message id="2" name="3v3_amperage" type="float" />
-        <message id="3" name="5v_voltage" type="float" />
-        <message id="4" name="5v_amperage" type="float" />
-        <message id="5" name="vbatt_voltage" type="float" />
-        <message id="6" name="vbatt_amperage" type="float" />
-    </node>
-
-    <node id="5" name="remote_control">
-        <message id="0" name="status" type="int" />
-    </node>
-
-    <node id="6" name="testbench">
-        <message id="0" name="status" type="int" />
-        <message id="1" name="pressure_1" type="float" />
-        <message id="2" name="pressure_2" type="float" />
-        <message id="3" name="pressure_3" type="float" />
-        <message id="4" name="pressure_4" type="float" />
-        <message id="5" name="temp_1" type="float" />
-        <message id="6" name="temp_2" type="float" />
-        <message id="7" name="temp_3" type="float" />
-        <message id="8" name="temp_4" type="float" />
-        <message id="9" name="temp_5" type="float" />
-        <message id="10" name="temp_6" type="float" />
-        <message id="11" name="load1" type="float" />
-        <message id="12" name="load2" type="float" />
-        <message id="13" name="load3" type="float" />
-        <message id="14" name="valve1_state" type="int" />
-        <message id="15" name="valve2_state" type="int" />
-    </node>
+        <node id="1" name="purge">
+            <message id="0" name="req_purge" type="int" />
+        </node>
+        <node id="2" name="coldflow">
+            <message id="0" name="valve_open_time_ms" type="int" />
+        </node>
+        <node id="3" name="hotfire">
+            <message id="0" name="post_ignition_delay_and_valve_open_time_ms" type="int" />
+        </node>
+        <node id="4" name="zero_offset_calibration">
+            <message id="0" name="thrust"/>
+            <message id="1" name="pressure_1"/>
+            <message id="2" name="pressure_2"/>
+            <message id="3" name="pressure_3"/>
+            <message id="4" name="pressure_4"/>
+            <message id="5" name="tank_weight"/>
+        </node>
+        <node id="5" name="coefficient_calibration">
+            <message id="0" name="thrust" type="float"/>
+            <message id="1" name="pressure_1" type="float"/>
+            <message id="2" name="pressure_2" type="float"/>
+            <message id="3" name="pressure_3" type="float"/>
+            <message id="4" name="pressure_4" type="float"/>
+            <message id="5" name="tank_weight" type="float"/>
+        </node>
+        <node id="6" name="request_data">
+            <message id="0" name="microsd_detected"/>
+            <message id="1" name="microsd_max_capacity"/>
+            <message id="2" name="microsd_free_capacity"/>
+            <message id="3" name="thrust_zero_offset"/>
+            <message id="4" name="thrust_coefficient"/>
+            <message id="5" name="pressure_1_zero_offset"/>
+            <message id="6" name="pressure_1_coefficient"/>
+            <message id="7" name="pressure_2_zero_offset"/>
+            <message id="8" name="pressure_2_coefficient"/>
+            <message id="9" name="pressure_3_zero_offset"/>
+            <message id="10" name="pressure_3_coefficient"/>
+            <message id="11" name="pressure_4_zero_offset"/>
+            <message id="12" name="pressure_4_coefficient"/>
+            <message id="13" name="tank_weight_zero_offset"/>
+            <message id="14" name="tank_weight_coefficient"/>
+            <message id="15" name="tank_weight_data"/>
+        </node>
+        <node id="11" name="test_status">
+            <message id="0" name="testEnCours_igniter_purgeValve_mainValve" type="int" />
+        </node>
+        <node id="12" name="sensor_data">
+            <message id="0" name="thrust_data" type="float" />
+            <message id="1" name="pressure_1_data" type="float" />
+            <message id="2" name="pressure_2_data" type="float" />
+            <message id="3" name="pressure_3_data" type="float" />
+            <message id="4" name="pressure_4_data" type="float" />
+        </node>
+        <node id="13" name="requested_data">
+            <message id="0" name="microsd_detected" type="float" />
+            <message id="1" name="microsd_max_capacity" type="float" />
+            <message id="2" name="microsd_free_capacity" type="float" />
+            <message id="3" name="thrust_zero_offset" type="float" />
+            <message id="4" name="thrust_coefficient" type="float" />
+            <message id="5" name="pressure_1_zero_offset" type="float" />
+            <message id="6" name="pressure_1_coefficient" type="float" />
+            <message id="7" name="pressure_2_zero_offset" type="float" />
+            <message id="8" name="pressure_2_coefficient" type="float" />
+            <message id="9" name="pressure_3_zero_offset" type="float" />
+            <message id="10" name="pressure_3_coefficient" type="float" />
+            <message id="11" name="pressure_4_zero_offset" type="float" />
+            <message id="12" name="pressure_4_coefficient" type="float" />
+            <message id="13" name="tank_weight_zero_offset" type="float" />
+            <message id="14" name="tank_weight_coefficient" type="float" />
+            <message id="15" name="tank_weight_data"  type="float" />
+        </node>
+        <node id="14" name="error_message">
+            <message id="0" name="Received_Incomplete_Radio_Packet"/>
+            <message id="1" name="Cannot_Handle_New_Event"/>
+            <message id="2" name="Radio_Packet_Checksum_Failed"/>
+            <message id="3" name="Burn_Wire_Not_Detected"/>
+            <message id="4" name="Burn_Wire_Not_Burned"/>
+        </node>
     </node_group>
 </protocol>

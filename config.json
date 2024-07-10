@@ -56,39 +56,21 @@
             "y": 0,
             "widgets":[
                 {
-                    "type": "DataWidget",
+                    "type": "ChargeWidget",
                     "name": "charge",
-                    "label": "Charge 1",
+                    "label": "Drogue",
                     "round": 0,
-                    "source": "rockets.anirniq.acquisition.charge",
+                    "source": "rockets.anirniq.mission.charge_status.drogue",
                     "x": 0,
                     "y": 0
                 },
                 {
-                    "type": "DataWidget",
+                    "type": "ChargeWidget",
                     "name": "charge",
-                    "label": "Charge 2",
+                    "label": "Main",
                     "round": 0,
-                    "source": "rockets.anirniq.acquisition.charge",
+                    "source": "rockets.anirniq.mission.charge_status.main",
                     "x": 1,
-                    "y": 0
-                },
-                {
-                    "type": "DataWidget",
-                    "name": "charge",
-                    "label": "Charge 3",
-                    "round": 0,
-                    "source": "rockets.timmiaq.acquisition.charge",
-                    "x": 2,
-                    "y": 0
-                },
-                {
-                    "type": "DataWidget",
-                    "name": "charge",
-                    "label": "Charge 4",
-                    "round": 0,
-                    "source": "rockets.timmiaq.acquisition.charge",
-                    "x": 3,
                     "y": 0
                 }
             ]

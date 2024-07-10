@@ -1,0 +1,732 @@
+{
+    "name": "testbench",
+    "widgets": 
+    [
+        {
+            "type": "GroupWidget",
+            "label": "File Info",
+            "x": 1,
+            "y": 0,
+            "widgets":
+            [
+                {
+                    "type": "DataWidget",
+                    "name": "",
+                    "label": "last Received Packet (ms)",
+                    "position" : "vertical",
+                    "round": 0,
+                    "source": "rockets.testbench.",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "",
+                    "label": "Last Reveived Error",
+                    "position" : "vertical",
+                    "round": 0,
+                    "source": "rockets.testbench.error_message",
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "type": "ButtonWidget",
+                    "name": "",
+                    "label": "Start Recording",
+                    "command" : "rockets.testbench",
+                    "x": 0,
+                    "y": 2
+                }
+            ]
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Mission Control",
+            "x": 2,
+            "y": 0,
+            "xspan":2,
+            "widgets":
+            [
+                { 
+                    "type": "GroupWidget",
+                    "label": "Purge",
+                    "x": 0,
+                    "y": 0,
+                    "widgets":
+                    [
+                        {
+                            "type": "ButtonWidget",
+                            "name": "reqpurge",
+                            "label": "Purge",
+                            "command" : "rockets.testbench.purge.req_purge",
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "ColdFlow",
+                    "x": 1,
+                    "y": 0,
+                    "widgets":
+                    [
+                        {
+                            "type": "TextFieldWidget",
+                            "name": "coldflowvalvetime",
+                            "label": "Valve Open Time (ms)",
+                            "source": "rockets.testbench.",
+                            "position" : "vertical",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "coldflowstart",
+                            "label": "Start",
+                            "command" : "rockets.testbench.coldflow.valve_open_time_ms",
+                            "fieldname":"coldflowvalvetime",
+                            "x": 0,
+                            "y": 1
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "HotFire",
+                    "x": 2,
+                    "y": 0,
+                    "widgets":
+                    [
+                        {
+                            "type": "TextFieldWidget",
+                            "name": "hotfirevalvetime",
+                            "label": "Valve Open Time (ms)",
+                            "source": "rockets.testbench.",
+                            "position": "vertical",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "TextFieldWidget",
+                            "name": "hotfirepostignitiondelay",
+                            "label": "Post-Ignition Delay (ms)",
+                            "source": "rockets.testbench.",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "hotfirestart",
+                            "label": "Start",
+                            "command" : "rockets.testbench.hotfire.post_ignition_delay_and_valve_open_time_ms",
+                            "fieldname": ["hotfirevalvetime","hotfirepostignitiondelay"],
+                            "x": 0,
+                            "y": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        { 
+            "type": "GroupWidget",
+            "label": "Test Status",
+            "x": 4,
+            "y": 0,
+            "widgets":
+            [
+                {
+                    "type": "DataWidget",
+                    "name": "status",
+                    "label": "Test in Progress",
+                    "round": 0,
+                    "source": "rockets.testbench.test_status.test_en_cours",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "status",
+                    "label": "Igniter",
+                    "round": 0,
+                    "source": "rockets.testbench.test_status.igniter",
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "status",
+                    "label": "Purge Valve",
+                    "round": 0,
+                    "source": "rockets.testbench.test_status.purge_valve",
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "status",
+                    "label": "Main Valve",
+                    "round": 0,
+                    "source": "rockets.testbench.test_status.main_valve",
+                    "x": 1,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Tank Weight",
+            "x": 5,
+            "y": 0,
+            "width": 120,
+            "widgets":
+            [
+                {
+                    "type": "DataWidget",
+                    "name": "weight",
+                    "label": "",
+                    "round": 0,
+                    "source": "rockets.testbench.requested_data.tank_weight_data",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "ButtonWidget",
+                    "name": "button",
+                    "label": "Refresh",
+                    "command" : "rockets.testbench.request_data.tank_weight_data",
+                    "x": 0,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Sensors",
+            "x": 1,
+            "y": 1,
+            "xspan":5, 
+            "widgets":
+            [
+                {
+                    "type": "GroupWidget",
+                    "label": "Tank Pressure",
+                    "x": 0,
+                    "y": 0,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "title": "Tank Pressure",
+                            "label": "Pressure",
+                            "position" : "horizontal",
+                            "source": "rockets.testbench.sensor_data.pressure_1_data",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "ChartWidget",
+                            "source": "rockets.testbench.sensor_data.pressure_1_data",
+                            "x": 0,
+                            "y": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "GroupWidget",
+                    "label": "Pre-Injection Pressure",
+                    "x": 1,
+                    "y": 0,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "title": "Pre-Injection Pressure",
+                            "label": "Pressure",
+                            "position" : "horizontal",
+                            "source": "rockets.testbench.sensor_data.pressure_2_data",
+                            "x": 0,
+                            "y": 0 
+                        },
+                        {
+                            "type": "ChartWidget",
+                            "source": "rockets.testbench.sensor_data.pressure_2_data",
+                            "x": 0,
+                            "y": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "GroupWidget",
+                    "label": "Pre-Combustion Pressure",
+                    "x": 0, 
+                    "y": 1,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "title": "Pre-Combustion Pressure",
+                            "label": "Pressure",
+                            "position" : "horizontal",
+                            "source": "rockets.testbench.sensor_data.pressure_3_data",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "ChartWidget",
+                            "source": "rockets.testbench.sensor_data.pressure_3_data",
+                            "x": 0,
+                            "y": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "GroupWidget",
+                    "label": "Post-Combustion Pressure",
+                    "x": 1,
+                    "y": 1,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "title": "Post-Combustion Pressure",
+                            "label": "Pressure",
+                            "position" : "horizontal",
+                            "source": "rockets.testbench.sensor_data.pressure_4_data",
+                            "x": 0,
+                            "y": 0   
+                        },
+                        {
+                            "type": "ChartWidget",
+                            "source": "rockets.testbench.sensor_data.pressure_4_data",
+                            "x": 0,
+                            "y": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "GroupWidget",
+                    "label": "Thrust",
+                    "x": 2,
+                    "y": 0,
+                    "yspan": 2,
+                    "xspan": 1,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "title": "Thrust",
+                            "label": "Thrust",
+                            "position" : "horizontal",
+                            "source": "rockets.testbench.sensor_data.thrust_data",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "ChartWidget",
+                            "source": "rockets.testbench.sensor_data.thrust_data",
+                            "x": 0,
+                            "y": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        { 
+            "type": "GroupWidget",
+            "label": "Calibration",
+            "x": 0,
+            "y": 0,
+            "yspan": 2,
+            "widgets":
+            [
+                {
+                    "type": "TextFieldWidget",
+                    "name": "refvalcoeff",
+                    "label": "Reference Value For Coefficient Calibration",
+                    "source": "rockets.testbench.",
+                    "x": 0,
+                    "y": 0
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "Thrust LoadCell",
+                    "x": 0,
+                    "y": 1,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "0-Offset",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.thrust_zero_offset",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "Coefficient",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.thrust_coefficient",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.zero_offset_calibration.thrust",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.coefficient_calibration.thrust",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.thrust_zero_offset",
+                            "x": 2,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.thrust_coefficient",
+                            "x": 2,
+                            "y": 1
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "Tank Weight LoadCell",
+                    "x": 0,
+                    "y": 2,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "0-Offset",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.tank_weight_zero_offset",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "Coefficient",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.tank_weight_coefficient",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.zero_offset_calibration.tank_weight",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.coefficient_calibration.tank_weight",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.tank_weight_zero_offset",
+                            "x": 2,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.tank_weight_coefficient",
+                            "x": 2,
+                            "y": 1
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "Pressure 1",
+                    "x": 0,
+                    "y": 3,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "0-Offset",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_1_zero_offset",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "Coefficient",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_1_coefficient",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.zero_offset_calibration.pressure_1",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.coefficient_calibration.pressure_1",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_1_zero_offset",
+                            "x": 2,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_1_coefficient",
+                            "x": 2,
+                            "y": 1
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "Pressure 2",
+                    "x": 0,
+                    "y": 4,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "0-Offset",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_2_zero_offset",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "Coefficient",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_2_coefficient",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.zero_offset_calibration.pressure_2",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.coefficient_calibration.pressure_2",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_2_zero_offset",
+                            "x": 2,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_2_coefficient",
+                            "x": 2,
+                            "y": 1
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "Pressure 3",
+                    "x": 0,
+                    "y": 5,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "0-Offset",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_3_zero_offset",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "Coefficient",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_3_coefficient",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.zero_offset_calibration.pressure_3",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.coefficient_calibration.pressure_3",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_3_zero_offset",
+                            "x": 2,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_3_coefficient",
+                            "x": 2,
+                            "y": 1
+                        }
+                    ]
+                },
+                { 
+                    "type": "GroupWidget",
+                    "label": "Pressure 4",
+                    "x": 0,
+                    "y": 6,
+                    "widgets":
+                    [
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "0-Offset",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_4_zero_offset",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "",
+                            "label": "Coefficient",
+                            "position" : "horizontal",
+                            "round": 0,
+                            "source": "rockets.testbench.requested_data.pressure_4_coefficient",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.zero_offset_calibration.pressure_4",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Callibrate",
+                            "command" : "rockets.testbench.coefficient_calibration.pressure_4",
+                            "fieldname":"refvalcoeff",
+                            "x": 1,
+                            "y": 1
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_4_zero_offset",
+                            "x": 2,
+                            "y": 0
+                        },
+                        {
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "refresh",
+                            "command" : "rockets.testbench.request_data.pressure_4_coefficient",
+                            "x": 2,
+                            "y": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

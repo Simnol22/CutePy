@@ -3,9 +3,11 @@ from Modules.Tools.Measurement import Measurement
 import math
 import time
 import json
+from PySide6.QtCore import Slot
 
 class FakeModule(DataModule):
     def __init__(self,parent,frequence=1):
+        super(FakeModule, self).__init__()
         self.freq = frequence
         self.baseData = {}
         self.n = 1
@@ -24,6 +26,7 @@ class FakeModule(DataModule):
             return False
 
     # FakeModule Thread loop.
+    @Slot()
     def run(self):
         try:
             while True:
