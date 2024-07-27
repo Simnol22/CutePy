@@ -106,7 +106,7 @@ class SerialModule(DataModule):
     # Once the packet is complete, we build a Measurement object from it and send it to the app. The data
     # will synchronize and validates itself via the CRC check.
     def onData(self):
-        bufferRead = self.serial.read(100)
+        bufferRead = self.serial.read(100) #read(100)
         for i in bufferRead:
             self.buffer.append(i)
             if len(self.buffer)>= self.packetSize:
@@ -122,30 +122,37 @@ class SerialModule(DataModule):
 
                 if packet.radio_compute_crc() == packet.checksum:
                     print("Valid Packet Received : Got " , self.buffer[:self.packetSize])
-                    
-                   # This is a bit hardcoded, but works for now. Verifying that the nodegroup id is 2 which is the testbench. then we verify some nodes.
-                   # This should not affect anirniq. Ideally there would be no need for test cases here.
-                    if packet.node == 11 and packet.node_group_id == 2:
-                        measurementArray = self.buildTestStatusMeasurement(packet)
-                        for measurement in measurementArray:
+
+                   # Some testbench (node_group_id==2) packets requires unique behaviors. This does not affect anirniq.
+                   # then depending on node, do the desired behavior. Ideally we wouldn't do special cases like this here.
+                    if packet.node_group_id == 2:
+                        if packet.node == 11:
+                            measurementArray = self.buildTestStatusMeasurement(packet)
+                            for measurement in measurementArray:
+                                if measurement.hasValue():
+                                    self.parent.sendMeasurement(measurement)
+                                    print("sending ",measurement)
+                                else:
+                                    print("Failed to build Measurement")
+                        #It we have 14, we have an error message from the testbench. We will print it
+                        elif packet.node == 14:
+                            print("Received TestBench Error : "+self.protocol.to_cute_name(packet.node_group_id, packet.node, packet.message_id))
+
+                        #If no special behavior, we build and send a standard measurement.
+                        else:
+                            measurement = self.buildMeasurement(packet)
                             if measurement.hasValue():
                                 self.parent.sendMeasurement(measurement)
                                 print("sending ",measurement)
                             else:
                                 print("Failed to build Measurement")
-
-                    #If we do not have the node 11 from testbench, we will build a normal measurement.
-                    else:
+                    else :
                         measurement = self.buildMeasurement(packet)
                         if measurement.hasValue():
                             self.parent.sendMeasurement(measurement)
                             print("sending ",measurement)
                         else:
                             print("Failed to build Measurement")
-        
-                    #It we have 14, we have an error message from the testbench. We will print it
-                    if packet.node == 14 and packet.node_group_id == 2:
-                        print("Received TestBench Error : "+self.protocol.to_cute_name(packet.node_group_id, packet.node, packet.message_id))
 
                     self.buffer = self.buffer[self.packetSize:] # remove 8 first elements
                 else:

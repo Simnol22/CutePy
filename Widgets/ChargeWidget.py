@@ -26,6 +26,7 @@ class ChargeWidget(Widget):
         # Initialize charges dictionaries
         self.charges = {}
         self.lastCharges = {}
+        self.lastCharge = None
         self.layout.addLayout(self.vlayout)
         
     def setData(self, data):
@@ -33,31 +34,30 @@ class ChargeWidget(Widget):
             if data.source == i:
                 self.chargeValue = data.value
                 if self.chargeValue != self.lastCharge:
-                    self.circle_widget.drawCharge(self.chargeValue)
+                    self.circle_widget.setCharge(self.chargeValue)
+                    self.circle_widget.update()
                     self.lastCharge = self.chargeValue
-
-    def refresh(self):
-        #redraw the circle widget, if the charge in self.chargeValue has changed
-        if self.chargeValue != self.lastCharge:
-            self.circle_widget.drawCharge(self.chargeValue)
-            self.lastCharge = self.chargeValue
 
 class CircleWidget(QWidget):
     def __init__(self, parent=None):
         super(CircleWidget, self).__init__(parent)
+        self.parent = parent
         self.pen = QPen(Qt.black, 2, Qt.SolidLine)
         self.greenBrush = QBrush(Qt.green, Qt.SolidPattern)
-        self.redBrush = QBrush(Qt.gray, Qt.SolidPattern)
+        self.greyBrush = QBrush(Qt.gray, Qt.SolidPattern)
+        self.painter = None
+        self.charge = 0
 
     def paintEvent(self, event=None):
         painter = QPainter(self)
-        self.drawCharge(painter)
-    
-    def drawCharge(self, painter, charge=0):
         painter.setPen(self.pen)
-        if charge == 0:
-            painter.setBrush(self.redBrush)
+        if self.charge == 0:
+            painter.setBrush(self.greyBrush)
         else:
             painter.setBrush(self.greenBrush)
         h = self.height() / 2
         painter.drawEllipse(self.width() / 2 - h / 2, h/8, 25, 25)
+        painter.end()
+    
+    def setCharge(self, charge=0):
+        self.charge = charge

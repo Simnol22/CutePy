@@ -170,4 +170,5 @@ class WidgetFactory:
     
     def buildChargeWidget(self, config, parent):
         widget = ChargeWidget(parent, config.get("label"))
+        widget.setSource(config["source"])
         return widget
