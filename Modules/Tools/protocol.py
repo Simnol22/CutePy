@@ -94,4 +94,5 @@ class ProtocolHelper():
                 for node in node_group:
                     if node.attrib["id"] == nodeId:
                         toCutePath.append(node.attrib['name'])
+
         return toCutePath  

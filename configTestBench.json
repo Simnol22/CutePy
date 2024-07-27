@@ -136,7 +136,7 @@
             "widgets":
             [
                 {
-                    "type": "DataWidget",
+                    "type": "ChargeWidget",
                     "name": "status",
                     "label": "Test in Progress",
                     "round": 0,
@@ -145,7 +145,7 @@
                     "y": 0
                 },
                 {
-                    "type": "DataWidget",
+                    "type": "ChargeWidget",
                     "name": "status",
                     "label": "Igniter",
                     "round": 0,
@@ -154,7 +154,7 @@
                     "y": 0
                 },
                 {
-                    "type": "DataWidget",
+                    "type": "ChargeWidget",
                     "name": "status",
                     "label": "Purge Valve",
                     "round": 0,
@@ -163,12 +163,39 @@
                     "y": 1
                 },
                 {
-                    "type": "DataWidget",
+                    "type": "ChargeWidget",
                     "name": "status",
                     "label": "Main Valve",
                     "round": 0,
                     "source": "rockets.testbench.test_status.main_valve",
                     "x": 1,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Tank Weight",
+            "x": 5,
+            "y": 0,
+            "width": 120,
+            "widgets":
+            [
+                {
+                    "type": "DataWidget",
+                    "name": "weight",
+                    "label": "",
+                    "round": 0,
+                    "source": "rockets.testbench.requested_data.tank_weight_data",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "ButtonWidget",
+                    "name": "button",
+                    "label": "Refresh",
+                    "command" : "rockets.testbench.request_data.tank_weight_data",
+                    "x": 0,
                     "y": 1
                 }
             ]
