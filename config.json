@@ -14,7 +14,6 @@
             "x": 1,
             "y": 0,
             "widgets":[
-
                 {
                     "type": "StatusWidget",
                     "name": "status",
@@ -97,6 +96,7 @@
                 "name": "altitude",
                 "label": "Altitude Max",
                 "unit": "ft",
+                "mode": "max",
                 "round": 0,
                 "source": "rockets.anirniq.acquisition.altitude",
                 "x": 1,
@@ -142,6 +142,7 @@
                 "name": "altitude",
                 "label": "Vitesse Max",
                 "unit": "ft",
+                "mode": "max",
                 "round": 2,
                 "source": "rockets.anirniq.acquisition.vertical_velocity",
                 "x": 0,
@@ -171,12 +172,34 @@
                 "name": "acceleration",
                 "label": "Acceleration Max",
                 "unit": "ft",
+                "mode": "max",
                 "round": 2,
                 "source": "rockets.anirniq.acquisition.acceleration",
                 "x": 2,
                 "y": 1
             }
         ]
+        },
+        {
+            "type": "GroupWidget",
+            "label": "Error messages",
+            "x": 2,
+            "y": 2,
+            "widgets":[
+                {
+                    "type": "TextWidget",
+                    "source": "rockets.anirniq.communication.error",
+                    "mapping": {
+                        "0": "Error 0",
+                        "1": "Error 1",
+                        "2": "Error 2",
+                        "3": "Error 3"
+                    },
+                    "nblines" : 4,
+                    "x": 0,
+                    "y": 0
+                }
+            ]
         }
     ]
 }
