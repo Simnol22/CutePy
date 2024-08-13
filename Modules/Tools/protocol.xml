@@ -135,7 +135,7 @@
             </message_group>
         </node>
 
-        <node id="4" name="motherboard">
+        <node id="4" name="psu">
             <message id="0" name="status" type="int" />
             <message id="1" name="3v3_voltage" type="float" />
             <message id="2" name="3v3_amperage" type="float" />

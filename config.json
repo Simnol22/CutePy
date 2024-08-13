@@ -45,6 +45,45 @@
                     "source": "rockets.anirniq.acquisition.charge",
                     "x": 1,
                     "y": 0
+                },
+                {
+                    "type": "GroupWidget",
+                    "label": "Battery Voltage",
+                    "x": 2,
+                    "y": 0,
+                    "widgets":[
+                        {
+                            "type": "DataWidget",
+                            "name": "3Vbatt",
+                            "label": "3V3 : ",
+                            "round": 0,
+                            "source": "rockets.anirniq.psu.3v3_voltage",
+                            "position": "horizontal",
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "5Vbatt",
+                            "label": "5V : ",
+                            "round": 0,
+                            "source": "rockets.anirniq.psu.5v_voltage",
+                            "position": "horizontal",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "DataWidget",
+                            "name": "Vbatt",
+                            "label": "VBatt",
+                            "round": 0,
+                            "source": "rockets.anirniq.psu.vbatt_voltage",
+                            "position": "horizontal",
+                            "x": 0,
+                            "y": 2
+                        }
+
+                    ]
                 }
             ]
         },
@@ -121,13 +160,12 @@
             "y": 1,
             "width":300
         },
-        {"type": "GroupWidget",
-        "label": "Acceleration",
-        "x": 0,
-        "y": 2,
-        "xspan":2,   
-        "widgets":[
-            {
+        {
+            "type": "GroupWidget",
+            "label": "Vitesse",
+            "x": 0,
+            "y": 2,
+            "widgets":[     {
                 "type": "DataWidget",
                 "name": "vitesse",
                 "label": "Vitesse",
@@ -147,15 +185,22 @@
                 "source": "rockets.anirniq.acquisition.vertical_velocity",
                 "x": 0,
                 "y": 1
-            },
+            }]
+
+        },  
+        {
+        "type": "GroupWidget",
+        "label": "Acceleration",
+        "x": 1,
+        "y": 2,   
+        "widgets":[
             {
                 "type": "ChartWidget",
                 "title": "Acceleratoin",
                 "source": "rockets.anirniq.acquisition.acceleration",
-                "x": 1,
-                "y": 0,
-                "yspan": 2,
-                "width": 300
+                "x": 0,
+                "y": 1,
+                "xspan": 2
             },
             {
                 "type": "DataWidget",
@@ -164,7 +209,7 @@
                 "unit": "ft",
                 "round": 2,
                 "source": "rockets.anirniq.acquisition.acceleration",
-                "x": 2,
+                "x": 0,
                 "y": 0
             },
             {
@@ -175,8 +220,8 @@
                 "mode": "max",
                 "round": 2,
                 "source": "rockets.anirniq.acquisition.acceleration",
-                "x": 2,
-                "y": 1
+                "x": 1,
+                "y": 0
             }
         ]
         },
