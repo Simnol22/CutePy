@@ -1,13 +1,16 @@
 from Widgets.Widget import Widget
 from PySide6.QtWidgets import QLabel
+from PySide6.QtWidgets import QScrollArea
 
 class TerminalWidget(Widget):
     def __init__(self, parent):
         super(TerminalWidget, self).__init__(parent)
         self.Terminallabel = QLabel("No terminal data")
         self.label = "No Label"
-        self.layout.addWidget(self.Terminallabel)
-        self.setStyleSheet("border: 1px solid black;")
+        self.scrollArea = QScrollArea()
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setWidget(self.Terminallabel)
+        self.layout.addWidget(self.scrollArea)
         self.requiredData = []
         self.allData = []
         self.round = 2

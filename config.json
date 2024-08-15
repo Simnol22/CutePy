@@ -152,13 +152,42 @@
         ]
         },
         {
-            "type": "TerminalWidget",
-            "label": "All data",
-            "round": 2,
-            "source": "all",
+            "type": "GroupWidget",
+            "label": "GPS",
             "x": 2,
             "y": 1,
-            "width":300
+            "widgets":[
+                {
+                    "type": "DataWidget",
+                    "name": "latitude",
+                    "label": "Latitude",
+                    "unit": "°",
+                    "round": 6,
+                    "source": "rockets.anirniq.gps.latitude",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "longitude",
+                    "label": "Longitude",
+                    "unit": "°",
+                    "round": 6,
+                    "source": "rockets.anirniq.gps.longitude",
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "type": "DataWidget",
+                    "name": "altitude",
+                    "label": "Altitude",
+                    "unit": "ft",
+                    "round": 0,
+                    "source": "rockets.anirniq.gps.altitude",
+                    "x": 0,
+                    "y": 2
+                }
+            ]
         },
         {
             "type": "GroupWidget",
@@ -226,25 +255,13 @@
         ]
         },
         {
-            "type": "GroupWidget",
-            "label": "Error messages",
+            "type": "TerminalWidget",
+            "label": "All data",
+            "round": 2,
+            "source": "all",
             "x": 2,
             "y": 2,
-            "widgets":[
-                {
-                    "type": "TextWidget",
-                    "source": "rockets.anirniq.communication.error",
-                    "mapping": {
-                        "0": "Error 0",
-                        "1": "Error 1",
-                        "2": "Error 2",
-                        "3": "Error 3"
-                    },
-                    "nblines" : 4,
-                    "x": 0,
-                    "y": 0
-                }
-            ]
+            "width": 300
         }
     ]
 }
