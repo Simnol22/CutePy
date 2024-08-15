@@ -41,8 +41,8 @@ class App: # Controlleur
     # The view is created here. It is a Qt application that will be running as the main thread
     def createView(self):
         print("Initialising View")
-        view = CuteView(self, frequence=20, config="config.json")
-        #view = CuteView(self,frequence=20, config="configTestBench.json")
+        #view = CuteView(self, frequence=20, config="config.json")
+        view = CuteView(self,frequence=20, config="config.json")
         self.view = view
         #print("Starting view threads")
         #viewThread = Thread(target=view.run)

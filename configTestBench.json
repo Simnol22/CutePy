@@ -20,12 +20,19 @@
                     "y": 0
                 },
                 {
-                    "type": "DataWidget",
+                    "type": "TextWidget",
                     "name": "",
                     "label": "Last Reveived Error",
                     "position" : "vertical",
-                    "round": 0,
-                    "source": "rockets.testbench.error_message",
+                    "source": "rockets.testbench.error_message.error",
+                    "mapping": {
+                        "0": "Received Incomplete Radio Packet",
+                        "1": "Cannot Handle New Event",
+                        "2": "Radio Packet Checksum Failed",
+                        "3": "Burn Wire Not Detected",
+                        "4": "Burn Wire Not Burned"
+                    },
+                    "nblines" : 4,
                     "x": 0,
                     "y": 1
                 },
@@ -185,34 +192,7 @@
                     "type": "DataWidget",
                     "name": "weight",
                     "label": "",
-                    "round": 0,
-                    "source": "rockets.testbench.requested_data.tank_weight_data",
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "type": "ButtonWidget",
-                    "name": "button",
-                    "label": "Refresh",
-                    "command" : "rockets.testbench.request_data.tank_weight_data",
-                    "x": 0,
-                    "y": 1
-                }
-            ]
-        },
-        {
-            "type": "GroupWidget",
-            "label": "Tank Weight",
-            "x": 5,
-            "y": 0,
-            "width": 120,
-            "widgets":
-            [
-                {
-                    "type": "DataWidget",
-                    "name": "weight",
-                    "label": "",
-                    "round": 0,
+                    "round": 2,
                     "source": "rockets.testbench.requested_data.tank_weight_data",
                     "x": 0,
                     "y": 0
@@ -387,7 +367,7 @@
                             "name": "",
                             "label": "0-Offset",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.thrust_zero_offset",
                             "x": 0,
                             "y": 0
@@ -397,7 +377,7 @@
                             "name": "",
                             "label": "Coefficient",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.thrust_coefficient",
                             "x": 0,
                             "y": 1
@@ -450,7 +430,7 @@
                             "name": "",
                             "label": "0-Offset",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.tank_weight_zero_offset",
                             "x": 0,
                             "y": 0
@@ -460,7 +440,7 @@
                             "name": "",
                             "label": "Coefficient",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.tank_weight_coefficient",
                             "x": 0,
                             "y": 1
@@ -513,7 +493,7 @@
                             "name": "",
                             "label": "0-Offset",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_1_zero_offset",
                             "x": 0,
                             "y": 0
@@ -523,7 +503,7 @@
                             "name": "",
                             "label": "Coefficient",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_1_coefficient",
                             "x": 0,
                             "y": 1
@@ -576,7 +556,7 @@
                             "name": "",
                             "label": "0-Offset",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_2_zero_offset",
                             "x": 0,
                             "y": 0
@@ -586,7 +566,7 @@
                             "name": "",
                             "label": "Coefficient",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_2_coefficient",
                             "x": 0,
                             "y": 1
@@ -639,7 +619,7 @@
                             "name": "",
                             "label": "0-Offset",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_3_zero_offset",
                             "x": 0,
                             "y": 0
@@ -649,7 +629,7 @@
                             "name": "",
                             "label": "Coefficient",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_3_coefficient",
                             "x": 0,
                             "y": 1
@@ -702,7 +682,7 @@
                             "name": "",
                             "label": "0-Offset",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_4_zero_offset",
                             "x": 0,
                             "y": 0
@@ -712,7 +692,7 @@
                             "name": "",
                             "label": "Coefficient",
                             "position" : "horizontal",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.testbench.requested_data.pressure_4_coefficient",
                             "x": 0,
                             "y": 1

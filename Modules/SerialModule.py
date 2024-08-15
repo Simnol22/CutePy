@@ -62,8 +62,6 @@ class SerialModule(DataModule):
         measurement.setSource(measurement_source)
 
         # Turning the Bytes received into a float. 
-        # Need to investigate this a little more. We seem to always only be sending 4 bytes of our 8 bytes payload,
-        # the rest of which is always 0.
         double_value = struct.unpack('<f', packet.payload[:4])[0]
         measurement.setValue(double_value)
         
@@ -121,7 +119,7 @@ class SerialModule(DataModule):
                 packet.checksum = self.buffer[7]
 
                 if packet.radio_compute_crc() == packet.checksum:
-                    print("Valid Packet Received : Got " , self.buffer[:self.packetSize])
+                    #print("Valid Packet Received : Got " , self.buffer[:self.packetSize])
 
                    # Some testbench (node_group_id==2) packets requires unique behaviors. This does not affect anirniq.
                    # then depending on node, do the desired behavior. Ideally we wouldn't do special cases like this here.
@@ -134,9 +132,6 @@ class SerialModule(DataModule):
                                     print("sending ",measurement)
                                 else:
                                     print("Failed to build Measurement")
-                        #It we have 14, we have an error message from the testbench. We will print it
-                        elif packet.node == 14:
-                            print("Received TestBench Error : "+self.protocol.to_cute_name(packet.node_group_id, packet.node, packet.message_id))
 
                         #If no special behavior, we build and send a standard measurement.
                         else:
