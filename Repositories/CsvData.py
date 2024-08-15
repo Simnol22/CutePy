@@ -1,66 +1,102 @@
 import csv
 import os
-from collections import defaultdict
+from collections import defaultdict, deque
+import time
 
 class CsvData:
-    def __init__(self, path):
+    def __init__(self, parent, path, frequence=20):
+        self.freq = frequence
         self.path = path
-        self.data = defaultdict(dict)
-        self.header_written = False
-        self.header = None  # Initialize header attribute
-
-        # Load existing data if file exists
-        if os.path.exists(self.path):
-            self._load_existing_data()
-
-    def _load_existing_data(self):
-        with open(self.path, 'r', newline='') as file:
-            reader = csv.DictReader(file)
-            self.header = reader.fieldnames  # Set header attribute
-            for row in reader:
-                timestamp = row['Timestamp']
-                for key, value in row.items():
-                    if key != 'Timestamp':
-                        self.data[timestamp][key] = value
-
+        self.headers = []
+        self.data_rows = []
+        self.allData = deque(maxlen=5000)
+        self.opened = False
+        self.column_set = set()
+        self.data_dict = defaultdict(lambda: [''] * len(self.headers))
+        self.current_row_by_source = {}  # Track the current row for each source
+        self.verifyPath()
+        
+    def verifyPath(self):
+        if not os.path.exists(self.path):
+            return True
+        else:
+            cnt=0
+            while os.path.exists(self.path):
+                cnt+=1
+                self.path = self.path.replace('.csv', f'_{cnt}.csv')
+            return True
+    
     def addMeasurement(self, measurement):
         source = measurement.source
         timestamp = measurement.timestamp
         value = measurement.value
+        self.allData.append([source, timestamp, value])
 
-        if not self.header_written:
-            self._write_header([source])
+    def openFile(self):
+        """Initialize the file with the basic header."""
+        with open(self.path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+        self.opened = True
 
-        # Update the data dictionary
-        if timestamp not in self.data:
-            self.data[timestamp] = {}
-        self.data[timestamp][source] = value
+    def saveData(self):
+        """Save all accumulated data to the CSV file."""
+        for data in self.allData:
+            self.add_data(data[0], data[1], data[2])
+        self.write_data_to_csv()
+        self.allData.clear()
 
-        # Update the CSV file
-        self._update_rows()
+    def update_header(self, column_title):
+        """Update the CSV header if a new column title is added."""
+        timestamp_col = f"{column_title} Timestamp"
+        
+        if column_title not in self.column_set:
+            # Add timestamp and data columns for the new source
+            if timestamp_col not in self.headers:
+                self.headers.append(timestamp_col)
+            if column_title not in self.headers:
+                self.headers.append(column_title)
+            
+            self.column_set.add(column_title)
+            self.column_set.add(timestamp_col)
 
-    def _write_header(self, new_sources):
-        self.header = ['Timestamp'] + new_sources  # Update header attribute
-        with open(self.path, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(self.header)
-            self.header_written = True
+            # Ensure existing rows in the data_dict match the updated headers
+            for key in self.data_dict:
+                self.data_dict[key].extend([''] * (len(self.headers) - len(self.data_dict[key])))
 
-    def _update_rows(self):
-        with open(self.path, 'a', newline='') as file:
-            writer = csv.writer(file)
-            for timestamp, values in self.data.items():
-                row = [timestamp] + [values.get(source, '') for source in self.header[1:]]
-                writer.writerow(row)
+    def add_data(self, column_title, timestamp, value):
+        """Add data to the CSV file."""
+        if column_title not in self.column_set:
+            self.update_header(column_title)
 
-    def read(self):
-        with open(self.path, 'r') as file:
-            return file.read()
+        # Determine the correct row index for this source
+        row_index = self.current_row_by_source.get(column_title, len(self.data_rows))
 
-    def write(self, data):
-        with open(self.path, 'w') as file:
-            file.write(data)
+        # Ensure the row exists in data_rows
+        while row_index >= len(self.data_rows):
+            self.data_rows.append([''] * len(self.headers))
+        
+        # Update the row with the new data
+        row = self.data_rows[row_index]
+        timestamp_col = f"{column_title} Timestamp"
+        row[self.headers.index(timestamp_col)] = timestamp
+        row[self.headers.index(column_title)] = value
 
-    def append(self, data):
-        with open(self.path, 'a') as file:
-            file.write(data)
+        # Update the current row index for the source
+        self.current_row_by_source[column_title] = row_index + 1
+
+    def write_data_to_csv(self):
+        """Write all accumulated data to the CSV file."""
+        with open(self.path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(self.headers)
+            writer.writerows(self.data_rows)
+
+    def run(self):
+        try:
+            while True:
+                if not self.opened:
+                    self.openFile()
+                self.saveData()
+                time.sleep(1 / self.freq)
+        except KeyboardInterrupt:
+            print('Interrupted!')

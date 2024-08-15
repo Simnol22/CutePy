@@ -11,7 +11,7 @@ class App: # Controlleur
     def __init__(self):
         self.view = None
         self.modules = []
-        self.repos = []
+        self.csvData = None 
         self.serialModule = None
         self.threadpool = QThreadPool()
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
@@ -25,11 +25,13 @@ class App: # Controlleur
     # All the modules are created here. Might create a model class for the modules for clearer and more maintainable code
     def createModules(self):
         print("Initialising Modules")
-        #self.repos.append(CsvData("test.csv"))
-        #fake = FakeModule(self, frequence=15)
-        #if fake.readJson(): # If the fakeconfig.json file is read correctly
-        #    print("Starting module threads")
-        #    self.threadpool.start(fake)
+        self.csvData = CsvData(self, path = "saved_data/cutepylog.csv",frequence = 1)
+        saveThread = Thread(target=self.csvData.run)
+        saveThread.start()
+        fake = FakeModule(self, frequence=15)
+        if fake.readJson(): # If the fakeconfig.json file is read correctly
+            print("Starting module threads")
+            self.threadpool.start(fake)
 
         self.serialModule = SerialModule(self, frequence=1) # No frequency for the serial module, this frequency is only for retrying connection with serial port
         print("Starting module threads")
@@ -59,9 +61,9 @@ class App: # Controlleur
         #Sending measurement to the view.
         if self.view:
             self.view.updateMeasurement(measurement)
-        #Sending measurement to the repositories
-        for db in self.repos:
-            db.addMeasurement(measurement)
+        #Saving measurements
+        if self.csvData:
+            self.csvData.addMeasurement(measurement)
 
 if __name__ == '__main__':
     # Deal with arguments here if needed
