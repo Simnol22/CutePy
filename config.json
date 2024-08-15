@@ -17,7 +17,7 @@
                 {
                     "type": "StatusWidget",
                     "name": "status",
-                    "source": "rockets.anirniq.acquisition.charge",
+                    "source": "rockets.anirniq.mission.rocket_status",
                     "status":{
                         "0":  "Innit",
                         "1": "Stanby",
@@ -56,7 +56,7 @@
                             "type": "DataWidget",
                             "name": "3Vbatt",
                             "label": "3V3 : ",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.anirniq.psu.3v3_voltage",
                             "position": "horizontal",
                             "x": 0,
@@ -66,7 +66,7 @@
                             "type": "DataWidget",
                             "name": "5Vbatt",
                             "label": "5V : ",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.anirniq.psu.5v_voltage",
                             "position": "horizontal",
                             "x": 0,
@@ -76,7 +76,7 @@
                             "type": "DataWidget",
                             "name": "Vbatt",
                             "label": "VBatt",
-                            "round": 0,
+                            "round": 2,
                             "source": "rockets.anirniq.psu.vbatt_voltage",
                             "position": "horizontal",
                             "x": 0,
@@ -126,7 +126,7 @@
                 "label": "Altitude",
                 "unit": "ft",
                 "round": 0,
-                "source": "rockets.anirniq.acquisition.altitude",
+                "source": "rockets.anirniq.mission.altitude",
                 "x": 0,
                 "y": 0
             },
@@ -137,14 +137,14 @@
                 "unit": "ft",
                 "mode": "max",
                 "round": 0,
-                "source": "rockets.anirniq.acquisition.altitude",
+                "source": "rockets.anirniq.mission.altitude",
                 "x": 1,
                 "y": 0
             },
             {
                 "type": "ChartWidget",
                 "title": "Altitude",
-                "source": "rockets.anirniq.acquisition.altitude",
+                "source": "rockets.anirniq.mission.altitude",
                 "x": 0,
                 "y": 1,
                 "xspan": 2

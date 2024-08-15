@@ -37,11 +37,10 @@ class StatusWidget(Widget):
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
-                self.statusVal = data.value    
+                self.statusVal = int(round(data.value,0)) 
                 
             
     def refresh(self):
-        self.statusVal = "3"
         currentVal = int(self.statusVal)
         self.statusActual.setText(self.status.get(str(currentVal)))
         self.prevArrow.setText(self.arrowIcon)
