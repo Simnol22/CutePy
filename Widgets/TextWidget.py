@@ -20,11 +20,11 @@ class TextWidget(Widget):
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
-                self.addNewValue(data.value)
+                self.addNewValue(int(data.value))
 
     def addNewValue(self, value):
         #Shift all the values of the list, adding the new value at the end
         for i in range(self.nbLines - 1):
             self.texts[i].setText(self.texts[i + 1].text())
-        self.texts[self.nbLines - 1].setText("ID : " + str(self.counter) + ", Msg : " + self.mapping[str(value)])
+        self.texts[self.nbLines - 1].setText(str(self.counter) + ", " + self.mapping[str(value)])
         self.counter += 1

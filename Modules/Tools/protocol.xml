@@ -332,11 +332,7 @@
             <message id="15" name="tank_weight_data"  type="float" />
         </node>
         <node id="14" name="error_message">
-            <message id="0" name="Received_Incomplete_Radio_Packet"/>
-            <message id="1" name="Cannot_Handle_New_Event"/>
-            <message id="2" name="Radio_Packet_Checksum_Failed"/>
-            <message id="3" name="Burn_Wire_Not_Detected"/>
-            <message id="4" name="Burn_Wire_Not_Burned"/>
+            <message id="0" name="error"/>
         </node>
     </node_group>
 </protocol>
