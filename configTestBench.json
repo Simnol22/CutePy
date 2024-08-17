@@ -37,12 +37,11 @@
                     "y": 1
                 },
                 {
-                    "type": "ButtonWidget",
-                    "name": "",
-                    "label": "Start Recording",
-                    "command" : "rockets.testbench",
-                    "x": 0,
-                    "y": 2
+                    "type" : "SettingsWidget",
+                    "x":1,
+                    "y" : 0,
+                    "yspan":2,
+                    "width":140
                 }
             ]
         },

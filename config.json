@@ -21,18 +21,11 @@
                     "status":{
                         "0":  "Innit",
                         "1": "Stanby",
-                        "2": "Launch",
-                        "3": "Ascent",
-                        "4": "Burnout",
-                        "5": "Coasting",
-                        "6": "Apogee",
-                        "7": "Drogue Dep",
-                        "8": "Drogue Desc",
-                        "9": "Main Dep",
-                        "10": "Main Desc",
-                        "11": "Landing",
-                        "12": "Recovery",
-                        "13": "PickedUp"
+                        "2": "Ascent",
+                        "3": "Coasting",
+                        "4": "Drogue Desc",
+                        "5": "Main Desc",
+                        "6": "Recovery"
                     },
                     "x": 0,
                     "y": 0
@@ -84,6 +77,22 @@
                         }
 
                     ]
+                },
+                {
+                    "type" : "GroupWidget",
+                    "label" : "Settings",
+                    "x" :3,
+                    "y": 0,
+                    "widgets":[
+                        {
+                            "type": "SettingsWidget",
+                            "x" : 0,
+                            "y" : 0,
+                            "width": 150,
+                            "height":100
+
+                        }
+                    ]
                 }
             ]
         },
@@ -125,7 +134,7 @@
                 "name": "altitude",
                 "label": "Altitude",
                 "unit": "ft",
-                "round": 0,
+                "round": 2,
                 "source": "rockets.anirniq.mission.altitude",
                 "x": 0,
                 "y": 0
@@ -136,7 +145,7 @@
                 "label": "Altitude Max",
                 "unit": "ft",
                 "mode": "max",
-                "round": 0,
+                "round": 2,
                 "source": "rockets.anirniq.mission.altitude",
                 "x": 1,
                 "y": 0
@@ -163,7 +172,7 @@
                     "label": "Latitude",
                     "unit": "°",
                     "round": 6,
-                    "source": "rockets.anirniq.gps.latitude",
+                    "source": "rockets.anirniq.communication.gnss.lat",
                     "x": 0,
                     "y": 0
                 },
@@ -173,7 +182,7 @@
                     "label": "Longitude",
                     "unit": "°",
                     "round": 6,
-                    "source": "rockets.anirniq.gps.longitude",
+                    "source": "rockets.anirniq.communication.gnss.lon",
                     "x": 1,
                     "y": 0
                 },
@@ -183,7 +192,7 @@
                     "label": "Altitude",
                     "unit": "ft",
                     "round": 0,
-                    "source": "rockets.anirniq.gps.altitude",
+                    "source": "rockets.anirniq.communication.gnss.alt",
                     "x": 0,
                     "y": 2
                 }
@@ -200,7 +209,7 @@
                 "label": "Vitesse",
                 "unit": "ft",
                 "round": 2,
-                "source": "rockets.anirniq.acquisition.vertical_velocity",
+                "source": "rockets.anirniq.mission.velocity",
                 "x": 0,
                 "y": 0
             },
@@ -211,7 +220,7 @@
                 "unit": "ft",
                 "mode": "max",
                 "round": 2,
-                "source": "rockets.anirniq.acquisition.vertical_velocity",
+                "source": "rockets.anirniq.mission.velocity",
                 "x": 0,
                 "y": 1
             }]
@@ -226,7 +235,7 @@
             {
                 "type": "ChartWidget",
                 "title": "Acceleratoin",
-                "source": "rockets.anirniq.acquisition.acceleration",
+                "source": "rockets.anirniq.mission.acceleration",
                 "x": 0,
                 "y": 1,
                 "xspan": 2
@@ -237,7 +246,7 @@
                 "label": "Acceleration",
                 "unit": "ft",
                 "round": 2,
-                "source": "rockets.anirniq.acquisition.acceleration",
+                "source": "rockets.anirniq.mission.acceleration",
                 "x": 0,
                 "y": 0
             },
@@ -248,7 +257,7 @@
                 "unit": "ft",
                 "mode": "max",
                 "round": 2,
-                "source": "rockets.anirniq.acquisition.acceleration",
+                "source": "rrockets.anirniq.mission.acceleration",
                 "x": 1,
                 "y": 0
             }

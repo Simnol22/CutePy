@@ -26,6 +26,13 @@ class CuteView:
         self.app = QApplication(sys.argv)
         self.createWidgets()
 
+# This function works but crashed when the new window quits. Needs to be fixed but doesnt affect anything for now
+    def loadNewConfig(self, config):
+        self.widgets = []
+        self.window.destroy()
+        self.jsonConfig = json.load(open(config))
+        self.createWidgets()
+
     def createWidgets(self):
         self.widgetFactory = WidgetFactory(self)
         self.window = Window()
@@ -48,12 +55,12 @@ class CuteView:
                     if fieldval != "":
                         return widget.getValue()
                     return None
+
     # CuteView Thread loop. This is just for refreshing the widgets information
     def run(self):
         try:
             while True:
                 self.onTimeOut()
-                
                 time.sleep(1/self.freq)
         except KeyboardInterrupt:
             print('interrupted!')
@@ -66,7 +73,7 @@ class CuteView:
     # we don't need to manualy update the widgets for now. Might come in handy for some widgets
     def onTimeOut(self):
         for widget in self.widgets:
-            widget.onUpdate()
+            widget.onTimeOut()
 
     # Chaque widget a son requiredData. On peut mettre la ou les sources qu'on souhaite recevoir
     # et la fonction va les envoyer au widget

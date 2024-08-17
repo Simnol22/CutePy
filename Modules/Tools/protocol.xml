@@ -51,6 +51,19 @@
             <message id="7" name="pressure" type="float" />
             <message id="8" name="velocity" type="float" />
             <message id="9" name="acceleration" type="float" />
+            <message id="10" name="temperature" type="float" />
+
+            <message_group name="imu_angular_rate">
+                <message id="11" name="x" type="float" />
+                <message id="12" name="y" type="float" />
+                <message id="13" name="z" type="float" />
+            </message_group>
+            
+            <message_group name="imu_linear_accel">
+                <message id="14" name="x" type="float" />
+                <message id="15" name="y" type="float" />
+                <message id="16" name="z" type="float" />
+            </message_group>
         </node>
 
         <node id="2" name="communication">
@@ -67,42 +80,32 @@
                 <message id="5" name="lon" type="float" />
                 <message id="6" name="alt" type="float" />
             </message_group>
-
-            <message_group name="engine_sequence">
-                <message id="7" name="set" type="int" command="yes" />
-                <message id="8" name="start" type="int" command="yes" />
-                <message id="9" name="stop" type="int" command="yes" />
-            </message_group>
         </node>
 
         <node id="3" name="acquisition">
             <message id="0" name="status" type="int" />
-            <message id="3" name="altitude" type="float" />
-            <message id="4" name="vertical_velocity" type="float" />
-            <message id="13" name="imu_temperature" type="float" />
-
             <message_group name="air">
                 <message id="1" name="pressure" type="float" />
                 <message id="2" name="temperature" type="float" />
             </message_group>
-
+            <message id="3" name="altitude" type="float" />
             <message_group name="acceleration">
                 <message id="4" name="x" type="float" />
                 <message id="5" name="y" type="float" />
                 <message id="6" name="z" type="float" />
             </message_group>
-
-            <message_group name="attitude">
+            <message_group name="altitude">
                 <message id="7" name="x" type="float" />
                 <message id="8" name="y" type="float" />
                 <message id="9" name="z" type="float" />
             </message_group>
-
             <message_group name="magnetic_field">
                 <message id="10" name="x" type="float" />
                 <message id="11" name="y" type="float" />
                 <message id="12" name="z" type="float" />
             </message_group>
+
+            <message id="13" name="imu_temperature" type="float" />
 
             <message_group name="delta_v">
                 <message id="14" name="x" type="float" />
@@ -122,7 +125,7 @@
                 <message id="22" name="yaw" type="float" />
             </message_group>
 
-            <message_group name="gps">
+            <message_group name="gnss">
                 <message id="23" name="lat" type="float" />
                 <message id="24" name="lon" type="float" />
             </message_group>
@@ -144,7 +147,9 @@
             <message id="5" name="vbatt_voltage" type="float" />
             <message id="6" name="vbatt_amperage" type="float" />
         </node>
-
+        <node id="4" name="psu">
+            <message id="0" name="status" type="int" />
+        </node>
     </node_group>
 
     <node_group name="timmiaq" id="1">

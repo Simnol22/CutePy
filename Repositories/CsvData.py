@@ -5,6 +5,7 @@ import time
 
 class CsvData:
     def __init__(self, parent, path, frequence=20):
+        self.parent = parent
         self.freq = frequence
         self.path = path
         self.headers = []
@@ -20,10 +21,11 @@ class CsvData:
         if not os.path.exists(self.path):
             return True
         else:
+            name = self.path.split('.')[0]
             cnt=0
             while os.path.exists(self.path):
                 cnt+=1
-                self.path = self.path.replace('.csv', f'_{cnt}.csv')
+                self.path = name + str(cnt) + ".csv"
             return True
     
     def addMeasurement(self, measurement):
@@ -94,9 +96,10 @@ class CsvData:
     def run(self):
         try:
             while True:
-                if not self.opened:
-                    self.openFile()
-                self.saveData()
+                if self.parent.configSettings.saveData:
+                    if not self.opened:
+                        self.openFile()
+                    self.saveData()
                 time.sleep(1 / self.freq)
         except KeyboardInterrupt:
             print('Interrupted!')

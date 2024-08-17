@@ -37,8 +37,7 @@ class StatusWidget(Widget):
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
-                self.statusVal = int(round(data.value,0)) 
-                
+                self.statusVal = data.value
             
     def refresh(self):
         currentVal = int(self.statusVal)
