@@ -59,7 +59,7 @@
         "omega": 0.002,
         "phi": 15000,
         "n":0,
-        "mid": "rockets.anirniq.acquisition.altitude",
+        "mid": "rockets.anirniq.mission.altitude",
         "broadcast": ["cute"]
     },
     {
@@ -113,7 +113,7 @@
         "omega": 0.11,
         "phi": 45.54300,
         "n":0,
-        "mid": "rockets.anirniq.acquisition.gps.lat",
+        "mid": "rockets.anirniq.communication.gnss.lat",
         "broadcast": ["cute"]
     },
     {
@@ -122,7 +122,16 @@
         "omega": 0.47,
         "phi": -73.55000,
         "n":0,
-        "mid": "rockets.anirniq.acquisition.gps.lon",
+        "mid": "rockets.anirniq.communication.gnss.lon",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.altitude",
+        "alpha": 15000,
+        "omega": 0.002,
+        "phi": 15000,
+        "n":0,
+        "mid": "rockets.anirniq.communication.gnss.alt",
         "broadcast": ["cute"]
     },
     {
@@ -131,7 +140,7 @@
         "omega": 0.17,
         "phi": 42.54300,
         "n":0,
-        "mid": "rockets.timmiaq.acquisition.gps.lat",
+        "mid": "rockets.timmiaq.communication.gnss.lat",
         "broadcast": ["cute"]
     },
     {
@@ -140,7 +149,7 @@
         "omega": 0.26,
         "phi": -69.55000,
         "n":0,
-        "mid": "rockets.timmiaq.acquisition.gps.lon",
+        "mid": "rockets.timmiaq.communication.gnss.lon",
         "broadcast": ["cute"]
     }
 ]

@@ -32,7 +32,7 @@ class ChargeWidget(Widget):
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
-                self.chargeValue = int(data.value)
+                self.chargeValue = int(round(data.value,0)) 
                 if self.chargeValue != self.lastCharge:
                     self.circle_widget.setCharge(self.chargeValue)
                     self.circle_widget.update()

@@ -19,9 +19,8 @@ class SerialModule(DataModule):
         self.serial = None
         self.buffer = []
         
-        # The COM port and baud rate will be changed from within the GUI
-        self.com_port = "COM3"
-        self.baud_rate = 115200
+        self.com_port = None
+        self.baud_rate = None
         
         #Instanciate protocol object only if it's not already done
         if self.protocol is None:
@@ -30,15 +29,16 @@ class SerialModule(DataModule):
         print("Serial Module Created")
     
     def serialConnection(self):
+        self.updateComPort()
         if self.com_port and self.baud_rate:
             try:
                 self.serial = serial.Serial()
-                self.serial.port = self.com_port
+                self.serial.port = self.com_port 
                 self.serial.baudrate = self.baud_rate
                 self.serial.open()
                 print("Serial module connected")
             except:
-                print("Error opening serial port")
+                print("Error opening serial port ", self.serial.port, " with baudrate ", self.serial.baudrate)
                 return False
             return True
         else:
@@ -50,20 +50,30 @@ class SerialModule(DataModule):
         for port,desc, hwid in sorted(serial.tools.list_ports.comports()):
             availablePorts.append(str(port))
         return availablePorts
-    
-    def setComPort(self, port):
-        self.com_port = port
-        self.serialConnection()
-    
+
+    def updateComPort(self):
+        self.com_port = self.parent.configSettings.serialPort
+        self.baud_rate = self.parent.configSettings.baudrate
+
     # Taking a packet recieved by the RFD900 and building a Measurement object from it for the app to use.
     def buildMeasurement(self, packet):
         measurement = Measurement()
         measurement_source =self.protocol.to_cute_name(packet.node_group_id, packet.node, packet.message_id)
+        measurement_type = str(self.protocol.get_type(packet.node_group_id, packet.node, packet.message_id))
         measurement.setSource(measurement_source)
 
         # Turning the Bytes received into a float. 
-        double_value = struct.unpack('<f', packet.payload[:4])[0]
-        measurement.setValue(double_value)
+        # Need to investigate this a little more. We seem to always only be sending 4 bytes of our 8 bytes payload,
+        # the rest of which is always 0.
+        value = None
+        if measurement_type == "int":
+            value = packet.payload[0]
+        elif measurement_type == "float":
+            value = struct.unpack('<f', packet.payload[:4])[0]
+        else:
+            print("Error, uknown type received")
+        
+        measurement.setValue(value)
         
         measurement.setTimestamp(time.time())
         return measurement

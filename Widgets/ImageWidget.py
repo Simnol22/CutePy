@@ -19,8 +19,3 @@ class ImageWidget(Widget):
         self.vlayout = QVBoxLayout()
         self.vlayout.addWidget(self.imageLabel)
         self.layout.addLayout(self.vlayout)
-
-    def onUpdate(self):
-        print("Resizing image")
-        self.pixmap = self.pixmap.scaled(self.width(), self.height(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        self.imageLabel.setPixmap(self.pixmap)

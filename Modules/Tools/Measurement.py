@@ -9,6 +9,7 @@ class Measurement:
         # Might want to change this in the future with the detection of flight.
         ts = time.time()
         self.timestamp = ts
+        self.type = None
 
     def setSource(self, source):
         self.source = source

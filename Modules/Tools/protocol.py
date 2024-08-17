@@ -82,6 +82,22 @@ class ProtocolHelper():
                                     toCuteName.append(message.attrib['name'])
                                     return toCuteName
         return toCuteName   
+    def get_type(self, nodeGroupId, nodeId, messageId):
+        nodeGroupId = str(nodeGroupId) # In case it's an int
+        nodeId = str(nodeId)
+        messageId = str(messageId)
+        for node_group in self.root:
+            if node_group.attrib["id"] == nodeGroupId:
+                for node in node_group:
+                    if node.attrib["id"] == nodeId:
+                        for message in node:
+                            if message.tag == 'message_group':
+                                for m in message:
+                                    if m.attrib["id"] == messageId:
+                                        return m.attrib['type']
+                            else:
+                                if message.attrib["id"] == messageId:
+                                    return message.attrib['type']
     
     def parse_to_cute_path(self, nodeGroupId, nodeId):
         nodeGroupId = str(nodeGroupId) # In case it's an int

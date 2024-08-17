@@ -37,9 +37,10 @@ class Widget(QWidget):
 
     def setData(self, data):
         pass
-    # onUpdate is called when the widget is updated in the view thread looop
+    
+    # onTimeOut is called when the widget is updated in the view thread looop
     # This method can be overriden by any widget if wanted.
     # This is not to update the data, but to update the widget itself if necessary
-    def onUpdate(self):
+    def onTimeOut(self):
         pass 
 

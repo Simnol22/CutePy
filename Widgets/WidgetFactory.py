@@ -10,6 +10,8 @@ from Widgets.ButtonWidget import ButtonWidget
 from Widgets.TextFieldWidget import TextFieldWidget
 from Widgets.ChargeWidget import ChargeWidget
 from Widgets.TextWidget import TextWidget
+from Widgets.SettingsWidget import SettingsWidget
+
 class WidgetFactory:
     def __init__(self, parent):
         self.widgets = {}
@@ -77,6 +79,8 @@ class WidgetFactory:
                 return self.buildChargeWidget(config, parent)
             elif config["type"] == "TextWidget":
                 return self.buildTextWidget(config, parent)
+            elif config["type"] == "SettingsWidget":
+                return self.buildSettingsWidget(config,parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -155,6 +159,7 @@ class WidgetFactory:
             print ("StatusWidget has no source or status")
             return None
         widget = StatusWidget(parent, config.get("status"))
+        widget.setSource(config["source"])
         return widget
     
     def buildButtonWidget(self, config, parent):
@@ -181,4 +186,8 @@ class WidgetFactory:
             return None
         widget = TextWidget(parent, config.get("mapping"), config.get("nblines"))
         widget.setSource(config["source"])
+        return widget
+    
+    def buildSettingsWidget(self, config, parent):
+        widget = SettingsWidget(parent, self.view)
         return widget
