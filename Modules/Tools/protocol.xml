@@ -275,12 +275,12 @@
             <message id="0" name="post_ignition_delay_and_valve_open_time_ms" type="int" />
         </node>
         <node id="4" name="zero_offset_calibration">
-            <message id="0" name="thrust"/>
-            <message id="1" name="pressure_1"/>
-            <message id="2" name="pressure_2"/>
-            <message id="3" name="pressure_3"/>
-            <message id="4" name="pressure_4"/>
-            <message id="5" name="tank_weight"/>
+            <message id="0" name="thrust" type="float" />
+            <message id="1" name="pressure_1" type="float" />
+            <message id="2" name="pressure_2" type="float" />
+            <message id="3" name="pressure_3" type="float" />
+            <message id="4" name="pressure_4" type="float" />
+            <message id="5" name="tank_weight" type="float" />
         </node>
         <node id="5" name="coefficient_calibration">
             <message id="0" name="thrust" type="float"/>
@@ -291,22 +291,22 @@
             <message id="5" name="tank_weight" type="float"/>
         </node>
         <node id="6" name="request_data">
-            <message id="0" name="microsd_detected"/>
-            <message id="1" name="microsd_max_capacity"/>
-            <message id="2" name="microsd_free_capacity"/>
-            <message id="3" name="thrust_zero_offset"/>
-            <message id="4" name="thrust_coefficient"/>
-            <message id="5" name="pressure_1_zero_offset"/>
-            <message id="6" name="pressure_1_coefficient"/>
-            <message id="7" name="pressure_2_zero_offset"/>
-            <message id="8" name="pressure_2_coefficient"/>
-            <message id="9" name="pressure_3_zero_offset"/>
-            <message id="10" name="pressure_3_coefficient"/>
-            <message id="11" name="pressure_4_zero_offset"/>
-            <message id="12" name="pressure_4_coefficient"/>
-            <message id="13" name="tank_weight_zero_offset"/>
-            <message id="14" name="tank_weight_coefficient"/>
-            <message id="15" name="tank_weight_data"/>
+            <message id="0" name="microsd_detected" type="float" />
+            <message id="1" name="microsd_max_capacity" type="float" />
+            <message id="2" name="microsd_free_capacity" type="float" />
+            <message id="3" name="thrust_zero_offset" type="float" />
+            <message id="4" name="thrust_coefficient" type="float" />
+            <message id="5" name="pressure_1_zero_offset" type="float" />
+            <message id="6" name="pressure_1_coefficient" type="float" />
+            <message id="7" name="pressure_2_zero_offset" type="float" />
+            <message id="8" name="pressure_2_coefficient" type="float" />
+            <message id="9" name="pressure_3_zero_offset" type="float" />
+            <message id="10" name="pressure_3_coefficient" type="float" />
+            <message id="11" name="pressure_4_zero_offset" type="float" />
+            <message id="12" name="pressure_4_coefficient" type="float" />
+            <message id="13" name="tank_weight_zero_offset" type="float" />
+            <message id="14" name="tank_weight_coefficient" type="float" />
+            <message id="15" name="tank_weight_data" type="float" />
         </node>
         <node id="11" name="test_status">
             <message id="0" name="testEnCours_igniter_purgeValve_mainValve" type="int" />

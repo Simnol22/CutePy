@@ -15,11 +15,15 @@ class DataWidget(Widget):
         self.round = 2
         self.maxValue = 0
         self.requiredData = []
+        self.conversion = None
         self.delimiter = "\n" if position == "vertical" else " : "
         self.updateDataLabel()
 
     def setLabel(self, text):
         self.label = text
+
+    def setConversion(self, conversion):
+        self.conversion = conversion
 
     def setUnit(self, unit):
         self.unit = unit
@@ -34,11 +38,14 @@ class DataWidget(Widget):
         self.dataLabel.setText(self.label + self.delimiter + self.dataValue + " "+ self.unit)
 
     def processData(self, data):
+        currentVal = data.value
+        if self.conversion is not None:
+            currentVal = self.conversion*currentVal
         if self.mode == "normal" or self.mode == None:
-            self.dataValue = str(round(data.value,self.round))
+            self.dataValue = str(round(currentVal,self.round))
         elif self.mode == "max":
-            if data.value > self.maxValue:
-                self.maxValue = data.value
+            if currentVal > self.maxValue:
+                self.maxValue = currentVal
                 self.dataValue = str(round(self.maxValue,self.round))
         self.updateDataLabel()
 

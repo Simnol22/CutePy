@@ -20,14 +20,21 @@ class ChartWidget(Widget):
         # Use a pen to define the color and thickness of the line
         pen = pg.mkPen(color=(65, 105, 225), width=5)
         self.dataLine = self.chart.plot(self.y, self.x, pen=pen)
+        self.conversion = None
 
     def setTitle(self, title):
         self.chart.setTitle(title)
 
+    def setConversion(self, conversion):
+        self.conversion = conversion
+
     def setData(self, data):
         for i in self.requiredData:
             if data.source == i:
-                self.x.append(data.value)
+                currentVal = data.value
+                if self.conversion is not None:
+                    currentVal = self.conversion*currentVal
+                self.x.append(currentVal)
                 self.y.append(data.timestamp)
     
     def refresh(self):

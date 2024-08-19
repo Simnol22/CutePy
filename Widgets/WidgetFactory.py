@@ -11,6 +11,7 @@ from Widgets.TextFieldWidget import TextFieldWidget
 from Widgets.ChargeWidget import ChargeWidget
 from Widgets.TextWidget import TextWidget
 from Widgets.SettingsWidget import SettingsWidget
+from Widgets.OrientationWidget import OrientationWidget
 
 class WidgetFactory:
     def __init__(self, parent):
@@ -80,7 +81,9 @@ class WidgetFactory:
             elif config["type"] == "TextWidget":
                 return self.buildTextWidget(config, parent)
             elif config["type"] == "SettingsWidget":
-                return self.buildSettingsWidget(config,parent)
+                return self.buildSettingsWidget(config, parent)
+            elif config["type"] == "OrientationWidget":
+                return self.buildOrientationWidget(config, parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -115,6 +118,8 @@ class WidgetFactory:
             widget.setUnit(config["unit"])
         if config.get("round") is not None:
             widget.setRounding(config["round"])
+        if config.get("conversion") is not None:
+            widget.setConversion(config["conversion"])
         widget.updateDataLabel()
         return widget
     
@@ -145,6 +150,8 @@ class WidgetFactory:
         widget.setSource(config["source"])
         if config.get("title") is not None:
             widget.setTitle(config["title"])
+        if config.get("conversion") is not None:
+            widget.setConversion(config["conversion"])
         return widget
     
     def buildImageWidget(self, config, parent):
@@ -190,4 +197,9 @@ class WidgetFactory:
     
     def buildSettingsWidget(self, config, parent):
         widget = SettingsWidget(parent, self.view)
+        return widget
+    
+    def buildOrientationWidget(self, config, parent):
+        widget = OrientationWidget(parent)
+        widget.setSource(config["source"])
         return widget

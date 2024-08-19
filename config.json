@@ -31,13 +31,30 @@
                     "y": 0
                 },
                 {
-                    "type": "DataWidget",
-                    "name": "charge",
-                    "label": "Widget gyro",
-                    "round": 0,
-                    "source": "rockets.anirniq.acquisition.charge",
+                    "type": "GroupWidget",
+                    "label": "Pitch & Yaw",
                     "x": 1,
-                    "y": 0
+                    "y": 0,
+                    "widgets" :[
+                        {
+                            "type": "OrientationWidget",
+                            "name": "orientation",
+                            "round": 0,
+                            "source": "rockets.anirniq.acquisition.angle.pitch",
+                            "width" : 150,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "type": "OrientationWidget",
+                            "name": "orientation",
+                            "round": 0,
+                            "source": "rockets.anirniq.acquisition.angle.yaw",
+                            "width" : 150,
+                            "x": 1,
+                            "y": 0
+                        }
+                    ]
                 },
                 {
                     "type": "GroupWidget",
@@ -133,6 +150,7 @@
                 "type": "DataWidget",
                 "name": "altitude",
                 "label": "Altitude",
+                "conversion": 3.28084,
                 "unit": "ft",
                 "round": 2,
                 "source": "rockets.anirniq.mission.altitude",
@@ -143,6 +161,7 @@
                 "type": "DataWidget",
                 "name": "altitude",
                 "label": "Altitude Max",
+                "conversion": 3.28084,
                 "unit": "ft",
                 "mode": "max",
                 "round": 2,
@@ -153,6 +172,7 @@
             {
                 "type": "ChartWidget",
                 "title": "Altitude",
+                "conversion": 3.28084,
                 "source": "rockets.anirniq.mission.altitude",
                 "x": 0,
                 "y": 1,
@@ -207,6 +227,7 @@
                 "type": "DataWidget",
                 "name": "vitesse",
                 "label": "Vitesse",
+                "conversion": 3.28084,
                 "unit": "ft",
                 "round": 2,
                 "source": "rockets.anirniq.mission.velocity",
@@ -217,6 +238,7 @@
                 "type": "DataWidget",
                 "name": "altitude",
                 "label": "Vitesse Max",
+                "conversion": 3.28084,
                 "unit": "ft",
                 "mode": "max",
                 "round": 2,
@@ -244,7 +266,7 @@
                 "type": "DataWidget",
                 "name": "acceleration",
                 "label": "Acceleration",
-                "unit": "ft",
+                "unit": "G",
                 "round": 2,
                 "source": "rockets.anirniq.mission.acceleration",
                 "x": 0,
@@ -254,7 +276,7 @@
                 "type": "DataWidget",
                 "name": "acceleration",
                 "label": "Acceleration Max",
-                "unit": "ft",
+                "unit": "G",
                 "mode": "max",
                 "round": 2,
                 "source": "rrockets.anirniq.mission.acceleration",
