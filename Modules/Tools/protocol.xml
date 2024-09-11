@@ -337,7 +337,7 @@
             <message id="15" name="tank_weight_data"  type="float" />
         </node>
         <node id="14" name="error_message">
-            <message id="0" name="error"/>
+            <message id="0" name="error" type="float"/>
         </node>
     </node_group>
 </protocol>
