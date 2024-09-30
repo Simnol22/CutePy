@@ -41,7 +41,7 @@
         "omega": 0,
         "phi": 0,
         "n":1,
-        "mid": "rockets.anirniq.acquisition.charge",
+        "mid": "rockets.anirniq.mission.charge_status.main",
         "broadcast": ["cute"]
     },
     {
@@ -60,6 +60,42 @@
         "phi": 15000,
         "n":0,
         "mid": "rockets.anirniq.mission.altitude",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.acceleration",
+        "alpha": 15000,
+        "omega": 0.002,
+        "phi": 15000,
+        "n":0,
+        "mid": "rockets.anirniq.mission.acceleration",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.3v3",
+        "alpha": 3.3,
+        "omega": 0.002,
+        "phi": 3.3,
+        "n":0,
+        "mid": "rockets.anirniq.psu.3v3_voltage",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.5v",
+        "alpha": 5,
+        "omega": 0.002,
+        "phi": 5,
+        "n":0,
+        "mid": "rockets.anirniq.psu.5v_voltage",
+        "broadcast": ["cute"]
+    },
+    {
+        "id": "fake.VBat",
+        "alpha": 8,
+        "omega": 0.002,
+        "phi": 8,
+        "n":0,
+        "mid": "rockets.anirniq.psu.vbatt_voltage",
         "broadcast": ["cute"]
     },
     {

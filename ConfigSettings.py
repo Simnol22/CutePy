@@ -4,6 +4,6 @@ class ConfigSettings:
         self.serialPort = "COM4"
         self.baudrate = 115200
         self.saveData = False
-        self.configFile = "configTestBench.json"
+        self.configFile = "config.json"
         self.defaultSavePath = "saved_data/cutepylog.csv"
-        self.fakeData = False
+        self.fakeData = True
