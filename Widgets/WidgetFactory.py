@@ -12,6 +12,7 @@ from Widgets.ChargeWidget import ChargeWidget
 from Widgets.TextWidget import TextWidget
 from Widgets.SettingsWidget import SettingsWidget
 from Widgets.OrientationWidget import OrientationWidget
+from Widgets.GaugeWidget import GaugeWidget
 
 class WidgetFactory:
     def __init__(self, parent):
@@ -84,6 +85,8 @@ class WidgetFactory:
                 return self.buildSettingsWidget(config, parent)
             elif config["type"] == "OrientationWidget":
                 return self.buildOrientationWidget(config, parent)
+            elif config["type"] == "GaugeWidget":
+                return self.buildGaugeWidget(config, parent)
             else:
                 print("Widget type", config["type"]," not found")
                 return None
@@ -202,4 +205,21 @@ class WidgetFactory:
     def buildOrientationWidget(self, config, parent):
         widget = OrientationWidget(parent)
         widget.setSource(config["source"])
+        return widget
+    
+    def buildGaugeWidget(self,config,parent):
+        widget = GaugeWidget(model=config["model"])
+        widget.setSource(config["source"])
+        widget.setLimit(config["limit"])
+        widget.setStep(config["step"])
+        if config.get("labelFontSize"):
+            widget.setLabelFontSize(config["labelFontSize"])
+        if config.get("needleWidth"):
+            widget.setNeedleWidth(config["needleWidth"])
+        if config.get("arcWidth"):
+            widget.setArcWidth(config["arcWidth"])
+        if config.get("scaleFontSize"):
+            widget.setScaleFontSize(config["scaleFontSize"])
+        if config.get("scaleDistance"):
+            widget.setScaleDistance(config["scaleDistance"])
         return widget
