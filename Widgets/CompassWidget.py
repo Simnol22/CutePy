@@ -129,7 +129,7 @@ class DrawCompassWidget(QWidget):
 
         # Dessiner la bille (ellipse) en rouge et remplie
         painter.setBrush(QBrush(Qt.red))  # Remplir avec une couleur rouge
-        painter.setPen(Qt.NoPen)  # Enlever le contour pour la bille
+        painter.setPen(QPen(Qt.black, 1))  # Contour noir
         painter.drawEllipse(x -self.radiusBille , y - self.radiusBille, 2*self.radiusBille, 2*self.radiusBille)
         
         painter.end()
