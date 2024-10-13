@@ -7,6 +7,7 @@ from PySide6.QtCore import QThreadPool
 from ConfigSettings import ConfigSettings
 import signal 
 import sys
+
 class App: # Controlleur
     def __init__(self):
         self.view = None
