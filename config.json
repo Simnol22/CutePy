@@ -233,29 +233,56 @@
             "label": "Vitesse",
             "x": 0,
             "y": 2,
-            "widgets":[     {
-                "type": "DataWidget",
-                "name": "vitesse",
+            "widgets":[
+            {
+                "type": "GroupWidget",
                 "label": "Vitesse",
-                "conversion": 3.28084,
-                "unit": "ft",
-                "round": 2,
-                "source": "rockets.anirniq.mission.velocity",
                 "x": 0,
-                "y": 0
+                "y": 0,
+                "widgets":[
+                    {
+                        "type": "GaugeWidget",
+                        "source": "rockets.timmiaq.acquisition.vertical_velocity",
+                        "model":2,
+                        "height": 120,
+                        "width": 120,
+                        "limit": 1000,
+                        "step": 200,
+                        "x": 0,
+                        "y": 0
+                    },
+        
+                    {
+                        "type": "GaugeWidget",
+                        "source": "rockets.timmiaq.acquisition.vertical_velocity",
+                        "model":2,
+                        "height": 120,
+                        "width": 120,
+                        "limit": 500,
+                        "step": 50,
+                        "x": 1,
+                        "y": 0
+                    }
+
+                ]
             },
             {
-                "type": "DataWidget",
-                "name": "altitude",
-                "label": "Vitesse Max",
-                "conversion": 3.28084,
-                "unit": "ft",
-                "mode": "max",
-                "round": 2,
-                "source": "rockets.anirniq.mission.velocity",
+                "type": "GaugeWidget",
+                "source": "rockets.timmiaq.acquisition.vertical_velocity",
+                "model":1,
+                "height": 130,
+                "width": 260,
+                "limit": 150,
+                "step": 10,
+                "labelFontSize": 18,
+                "needleWidth": 9,
+                "arcWidth" : 10,
+                "scaleFontSize": 11,
+                "scaleDistance": 25,
                 "x": 0,
                 "y": 1
-            }]
+            }
+        ]
 
         },  
         {
