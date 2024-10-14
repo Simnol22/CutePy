@@ -19,7 +19,7 @@ class CompassWidget(Widget):
 
         self.verif = 0
         # Initialize the layout
-        self.vlayout = QVBoxLayout(self)
+        self.vlayout = QVBoxLayout()
         self.drawCompassWidget =  DrawCompassWidget(self)
         self.vlayout.addWidget(self.drawCompassWidget)
         self.layout.addLayout(self.vlayout)
@@ -88,6 +88,10 @@ class DrawCompassWidget(QWidget):
         painter.setPen(QPen(Qt.black, 1))
         painter.drawEllipse(1, 1, height-2, width-2)
 
+        self.distance = distance(self.latGS,self.lonGS,self.latRocket,self.lonRocket)   #Calcul de la distance horizontale à la GS
+
+
+
         #On test si les coordoonées de la ground sation ont changé. 
         #Si oui on met à jour la carte en fond, sinon on ne fait rien
         #Cela permet de réduire le nombre de demande à l'API
@@ -99,16 +103,38 @@ class DrawCompassWidget(QWidget):
             if check_internet() == 1:
                 #Mise à jour de la position de groud station
                 mapApi(self.latGS,self.lonGS)
-                self.background_image = Image.open('Resources/map.png')   
             else:
                 self.background_image = Image.open('Resources/V1.png')
-            #Ajoute un masque à la map pour fitter la forme du compas 
-            compass_mask(self.background_image)
-            #Convertion dans le bon format
-            self.background_image = QPixmap("Resources/image_compass_mask.png")
 
         else:
             pass
+
+        if self.distance <= 1000:
+            self.background_image = QPixmap('Resources/map1000.png')
+            self.range = 1000
+        elif 1000 < self.distance <= 2000:
+            self.background_image = QPixmap('Resources/map2000.png')
+            self.range = 2000
+        elif 2000 < self.distance <= 3000:
+            self.background_image = QPixmap('Resources/map3000.png')
+            self.range = 3000
+        elif 3000 < self.distance <= 4000:
+            self.background_image = QPixmap('Resources/map4000.png')
+            self.range = 4000
+        elif self.distance > 4000:
+            self.background_image = QPixmap('Resources/map5000.png')
+            self.range = 5000
+        else:
+            print('Probleme choix photo')
+
+        
+        # #Ajoute un masque à la map pour fitter la forme du compas 
+        # compass_mask(self.background_image)
+        # #Convertion dans le bon format
+        # self.background_image = QPixmap("Resources/image_compass_mask.png")
+
+        # self.background_image = QPixmap("Resources/image_compass_mask.png")
+        
         resized_image = self.background_image.scaled(width - 2, height - 2, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         target_rect = QRect(1, 1, width - 2, height - 2)  # Utiliser QRect pour spécifier la zone
         painter.drawPixmap(target_rect, resized_image)  # Correctement appelé avec QRect et QPixmap
@@ -119,7 +145,6 @@ class DrawCompassWidget(QWidget):
         
 
         self.angle = bearing(self.latGS,self.lonGS,self.latRocket,self.lonRocket)       #Calcul du bearing
-        self.distance = distance(self.latGS,self.lonGS,self.latRocket,self.lonRocket)   #Calcul de la distance horizontale à la GS
         if self.distance <= self.range:
             x = ((height-2)/2 +1) + self.distance/self.range * (height-2)/2 * math.cos(math.radians(self.angle-90))
             y = ((height-2)/2 +1) + self.distance/self.range * (height-2)/2 * math.sin(math.radians(self.angle-90))
@@ -131,7 +156,7 @@ class DrawCompassWidget(QWidget):
         painter.setBrush(QBrush(Qt.red))  # Remplir avec une couleur rouge
         painter.setPen(QPen(Qt.black, 1))  # Contour noir
         painter.drawEllipse(x -self.radiusBille , y - self.radiusBille, 2*self.radiusBille, 2*self.radiusBille)
-        
+
         painter.end()
 
         

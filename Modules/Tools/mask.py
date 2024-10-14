@@ -19,7 +19,4 @@ def apply_mask(image, mask):
 def compass_mask(image):
     mask = create_circle_mask(image.size)
     image_with_mask = apply_mask(image, mask)
-
-    #Enregistre l'image avec le masque dans le dossier Resources
-    image_path = os.path.join("Resources","image_compass_mask.png")
-    image_with_mask.save(image_path)
+    return(image_with_mask)
