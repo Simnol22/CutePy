@@ -15,44 +15,51 @@
             "y": 0,
             "widgets":[
                 {
-                    "type": "StatusWidget",
-                    "name": "status",
-                    "source": "rockets.anirniq.mission.rocket_status",
-                    "status":{
-                        "0":  "Innit",
-                        "1": "Stanby",
-                        "2": "Ascent",
-                        "3": "Coasting",
-                        "4": "Drogue Desc",
-                        "5": "Main Desc",
-                        "6": "Recovery"
-                    },
-                    "x": 0,
-                    "y": 0
+                    "type" : "GroupWidget",
+                    "label" : "Settings",
+                    "x" :0,
+                    "y": 0,
+                    "widgets":[
+                        {
+                            "type": "SettingsWidget",
+                            "x" : 0,
+                            "y" : 0,
+                            "width": 150,
+                            "height":100
+
+                        }
+                    ]
                 },
                 {
-                    "type": "GroupWidget",
-                    "label": "Pitch & Yaw",
-                    "x": 1,
+                    "type" : "GroupWidget",
+                    "label" : "On Board Data Recording",
+                    "x" :1,
                     "y": 0,
-                    "widgets" :[
+                    "widgets":[
                         {
-                            "type": "OrientationWidget",
-                            "name": "orientation",
-                            "round": 0,
-                            "source": "rockets.anirniq.acquisition.angle.pitch",
-                            "width" : 150,
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Start",
+                            "command" : "rockets.anirniq.emergency.start_recording",
                             "x": 0,
                             "y": 0
                         },
                         {
-                            "type": "OrientationWidget",
-                            "name": "orientation",
+                            "type": "ButtonWidget",
+                            "name": "",
+                            "label": "Stop",
+                            "command" : "rockets.anirniq.emergency.stop_recording",
+                            "x": 0,
+                            "y": 1
+                        },
+                        {
+                            "type": "ChargeWidget",
+                            "name": "data_recording",
+                            "label": "",
                             "round": 0,
-                            "source": "rockets.anirniq.acquisition.angle.yaw",
-                            "width" : 150,
-                            "x": 1,
-                            "y": 0
+                            "source": "rockets.anirniq.communication.data_recording",
+                            "x": 0,
+                            "y": 2
                         }
                     ]
                 },
@@ -92,24 +99,23 @@
                             "x": 0,
                             "y": 2
                         }
-
                     ]
                 },
                 {
-                    "type" : "GroupWidget",
-                    "label" : "Settings",
-                    "x" :3,
-                    "y": 0,
-                    "widgets":[
-                        {
-                            "type": "SettingsWidget",
-                            "x" : 0,
-                            "y" : 0,
-                            "width": 150,
-                            "height":100
-
-                        }
-                    ]
+                    "type": "StatusWidget",
+                    "name": "status",
+                    "source": "rockets.anirniq.mission.rocket_status",
+                    "status":{
+                        "0":  "Innit",
+                        "1": "Stanby",
+                        "2": "Ascent",
+                        "3": "Coasting",
+                        "4": "Drogue Desc",
+                        "5": "Main Desc",
+                        "6": "Recovery"
+                    },
+                    "x": 3,
+                    "y": 0
                 }
             ]
         },
@@ -140,11 +146,39 @@
             ]
 
         },
-        {"type": "GroupWidget",
+        {
+  
+            "type": "GroupWidget",
+            "label": "Pitch & Yaw",
+            "x": 0,
+            "y": 1,
+            "widgets" :[
+                {
+                    "type": "OrientationWidget",
+                    "name": "orientation",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.angle.pitch",
+                    "width" : 150,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "type": "OrientationWidget",
+                    "name": "orientation",
+                    "round": 0,
+                    "source": "rockets.anirniq.acquisition.angle.yaw",
+                    "width" : 150,
+                    "x": 1,
+                    "y": 0
+                }
+            ]     
+        },
+        {
+            "type": "GroupWidget",
         "label": "Altitude",
-        "x": 0,
+        "x": 1,
         "y": 1,
-        "xspan":2,   
+        "xspan":1,   
         "widgets":[
             {
                 "type": "DataWidget",

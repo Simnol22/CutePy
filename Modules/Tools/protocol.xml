@@ -31,9 +31,10 @@
 <protocol name="rockets" c_prefix="CAN">
     <node_group name="anirniq" id="0">
         <node id="0" name="emergency">
-            <message_group name="engine">
-                <message id="0" name="stop" type="int" />
-            </message_group>
+            <message id="0" name="no_event" type="int" />
+            <message id="1" name="start_recording" type="int" />
+            <message id="2" name="stop_recording" type="int" />
+            <message id="3" name="flash_reset" type="int" />
         </node>
 
         <node id="1" name="mission">
@@ -68,18 +69,17 @@
 
         <node id="2" name="communication">
             <message id="0" name="status" type="int" />
-            <message id="1" name="sleep" type="int" />
-
-            <message_group name="eject">
-                <message id="2" name="drogue" type="int" command="yes" />
-                <message id="3" name="main" type="int" command="yes" />
-            </message_group>
 
             <message_group name="gnss">
-                <message id="4" name="lat" type="float" />
-                <message id="5" name="lon" type="float" />
-                <message id="6" name="alt" type="float" />
+                <message id="1" name="lat" type="float" />
+                <message id="2" name="lon" type="float" />
+                <message id="3" name="alt" type="float" />
             </message_group>
+
+            <message id="4" name="data_recording" type="int"/>
+            <message id="5" name="flash_reset" type="int"/>
+            <message id="6" name="cmd" type="int"/>
+            
         </node>
 
         <node id="3" name="acquisition">
