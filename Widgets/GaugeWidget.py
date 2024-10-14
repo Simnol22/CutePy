@@ -29,7 +29,7 @@ class GaugeWidget(Widget):
         super(GaugeWidget, self).__init__(parent)
         # Initialize the layout
         self.model = model
-        self.vlayout = QVBoxLayout(self)
+        self.vlayout = QVBoxLayout()
         self.gaugeDrawWidget = GaugeDrawWidget(self.model, self)
         self.vlayout.addWidget(self.gaugeDrawWidget)
         self.layout.addLayout(self.vlayout)

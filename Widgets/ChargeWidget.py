@@ -8,7 +8,7 @@ class ChargeWidget(Widget):
         super(ChargeWidget, self).__init__(parent)
         
         # Initialize the layout
-        self.vlayout = QVBoxLayout(self)
+        self.vlayout = QVBoxLayout()
         
         # Create and set the label
         self.label = QLabel(label_text)
