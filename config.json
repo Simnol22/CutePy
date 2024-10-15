@@ -220,7 +220,7 @@
                 {
                     "type": "CompassWidget",
                     "title": "Compass",
-                    "source": "rockets.anirniq.acquisition.latitude",
+                    "source": ["rockets.anirniq.communication.gnss.lat","rockets.anirniq.communication.gnss.lon"],
                     "x": 1,
                     "y": 2,
                     "height": 120,
