@@ -1,3 +1,18 @@
+"""
+Compass widget :
+Display a map using Google Maps API to locate in real time the rocket.
+
+Config:
+*Mandatory*
+source: ["rockets.anirniq.communication.gnss.lat","rockets.anirniq.communication.gnss.lon"]
+height: height of teh widget
+width: width of the widget
+
+
+Author: Martin Grangé (10/15/2024)
+
+"""
+
 from Widgets.Widget import Widget
 from PySide6 import QtGui
 from PySide6.QtGui import QPen, QBrush, QPixmap, QPainter
