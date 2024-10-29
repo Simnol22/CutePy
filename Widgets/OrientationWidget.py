@@ -9,7 +9,7 @@ class OrientationWidget(Widget):
         super(OrientationWidget, self).__init__(parent)
         
         # Initialize the layout
-        self.vlayout = QVBoxLayout(self)
+        self.vlayout = QVBoxLayout()
         self.ori = 0.0
         self.orientationDrawWidget =  OrientationDrawWidget(self)
         self.vlayout.addWidget(self.orientationDrawWidget)

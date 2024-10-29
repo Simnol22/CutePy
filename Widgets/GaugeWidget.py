@@ -5,10 +5,11 @@ Displays the evoluation of a value thanks to a dial and a needle.
 Config:
 * Mandatory *
 model : 1 or 2, select the gauge model you want
-height : height of teh widget
-width : width of the widget
 limit : maximum value displayed on the dial
 step : step between values on the dial 
+source : any data you want to display
+height : height of the widget
+width : width of the widget
 
 * Optional * 
 arcWidth : width of the dial's arc
@@ -16,6 +17,8 @@ needleWidth : width of the needle
 labelFontSize : font size of the label displaying real time speed
 scaleFontSize : font size of the scales on the dial 
 scaleDistance : distance bewteen the scales and the dial's arc
+
+Author: Martin Grangé (10/15/2024)
 """
 
 from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout
@@ -29,7 +32,7 @@ class GaugeWidget(Widget):
         super(GaugeWidget, self).__init__(parent)
         # Initialize the layout
         self.model = model
-        self.vlayout = QVBoxLayout(self)
+        self.vlayout = QVBoxLayout()
         self.gaugeDrawWidget = GaugeDrawWidget(self.model, self)
         self.vlayout.addWidget(self.gaugeDrawWidget)
         self.layout.addLayout(self.vlayout)

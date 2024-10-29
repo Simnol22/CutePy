@@ -145,7 +145,7 @@
     },
     {
         "id": "fake.gps.lat",
-        "alpha": 0.007,
+        "alpha": 0.02,
         "omega": 0.11,
         "phi": 45.54300,
         "n":0,
