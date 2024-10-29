@@ -64,7 +64,8 @@ class DrawCompassWidget(QWidget):
         self.radius = 58
         self.radiusBille = 3
         self.range = 2000
-        
+        self.internet = 0
+
         #Initialisation des variables
         self.angle = 0
         self.distance = 0
@@ -114,41 +115,48 @@ class DrawCompassWidget(QWidget):
             #Mise à jour des coordonnées de vérification
             self.latGS2 = self.latGS
             self.lonGS2 = self.lonGS
-
-            if check_internet() == 1:
+            internet = 0
+            if check_internet() == 0:
                 #Mise à jour de la position de groud station
                 mapApi(self.latGS,self.lonGS)
+                self.internet = 1
             else:
-                self.background_image = Image.open('Resources/V1.png')
+                self.internet = 0
 
         else:
             pass
-
-        if self.distance <= 1000:
-            self.background_image = QPixmap('Resources/map1000.png')
-            self.range = 1000
-        elif 1000 < self.distance <= 2000:
-            self.background_image = QPixmap('Resources/map2000.png')
-            self.range = 2000
-        elif 2000 < self.distance <= 3000:
-            self.background_image = QPixmap('Resources/map3000.png')
-            self.range = 3000
-        elif 3000 < self.distance <= 4000:
-            self.background_image = QPixmap('Resources/map4000.png')
-            self.range = 4000
-        elif self.distance > 4000:
-            self.background_image = QPixmap('Resources/map5000.png')
-            self.range = 5000
+        if self.internet == 1:
+            if self.distance <= 1000:
+                self.background_image = QPixmap('Resources/map1000.png')
+                self.range = 1000
+            elif 1000 < self.distance <= 2000:
+                self.background_image = QPixmap('Resources/map2000.png')
+                self.range = 2000
+            elif 2000 < self.distance <= 3000:
+                self.background_image = QPixmap('Resources/map3000.png')
+                self.range = 3000
+            elif 3000 < self.distance <= 4000:
+                self.background_image = QPixmap('Resources/map4000.png')
+                self.range = 4000
+            elif self.distance > 4000:
+                self.background_image = QPixmap('Resources/map5000.png')
+                self.range = 5000
+            else:
+                print('Probleme choix photo internet')
         else:
-            print('Probleme choix photo')
+            if self.distance <= 1000:
+                self.background_image = QPixmap('Resources/map1000offline.png')
+                self.range = 1000
+            elif 1000 < self.distance <= 2000:
+                self.background_image = QPixmap('Resources/map2000offline.png')
+                self.range = 2000
+            elif self.distance > 2000:
+                self.background_image = QPixmap('Resources/map4000offline.png')
+                self.range = 4000
+            else:
+                print('Probleme choix photo sans réseau')
+            
 
-        
-        # #Ajoute un masque à la map pour fitter la forme du compas 
-        # compass_mask(self.background_image)
-        # #Convertion dans le bon format
-        # self.background_image = QPixmap("Resources/image_compass_mask.png")
-
-        # self.background_image = QPixmap("Resources/image_compass_mask.png")
         
         resized_image = self.background_image.scaled(width - 2, height - 2, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         target_rect = QRect(1, 1, width - 2, height - 2)  # Utiliser QRect pour spécifier la zone
