@@ -1,8 +1,8 @@
-# PyCute
+# CutePy
 
-PyCute is RockÉTS ground station application. This project was made for having a more sustainable,
+CutePy is RockÉTS ground station application. This project was made for having a more sustainable,
 maintainable and simple ground station. It is strongly based on the previous work of David Bourgault,
-CuteStation and Rocketsd. The main differences are that PyCute sticks to the essentials only :
+CuteStation and Rocketsd. The main differences are that CutePy sticks to the essentials only :
 **Recieving data and showing it on the application**. This of course does not mean that it is less practical
 or have fewer functionalities than the original systems.
 
@@ -12,8 +12,8 @@ It is a Qt based ground control system.
 
 ## Architecture
 
-PyCute is constructed around a MVC (Model, View, Controller) architecture. This ensures great communication between all sub-systems and is in itself a very modular design pattern.
-![Architecture Diagram](Resources/PyCute.png)
+CutePy is constructed around a MVC (Model, View, Controller) architecture. This ensures great communication between all sub-systems and is in itself a very modular design pattern.
+![Architecture Diagram](Resources/CutePy.png)
 
 #### App
 
